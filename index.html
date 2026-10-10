@@ -828,7 +828,7 @@ function e6SpecificSpeakingCoach(x,i,prompt){
  const advice=(E6_SPEAK_HINTS_EN[i]||'Use simple English.')+' You may begin: '+(sample||'').split(/(?<=[.!?])\s+/)[0];
  const unitWords=(x.vocab||[]).slice(i%Math.max(1,(x.vocab||[]).length),i%Math.max(1,(x.vocab||[]).length)+3).map(v=>v[0]+' ('+v[3]+')');
  const hintVi=['Trả lời đúng trọng tâm và thêm hai chi tiết ngắn.','Nói rõ câu trả lời và giải thích hoặc thêm thông tin.','Dùng hai đến ba câu ngắn với từ vựng đúng chủ đề.','Làm đủ các yêu cầu cụ thể của đề bài.','Dùng cấu trúc ngữ pháp phù hợp, diễn đạt từng ý rõ ràng.','Dùng đủ các từ bắt buộc, mỗi từ trong một câu hoàn chỉnh.','Đặt đúng hai câu hỏi khác nhau.','Mở đầu, nêu một số chi tiết, rồi kết thúc bằng ý kiến của em.','Kể một tình huống cụ thể: ở đâu, ai, chuyện gì và cảm xúc.','Nói năm điều khác nhau đã học trong Unit.'][i]+' Đề bài cụ thể: '+taskVi;
- return `<details class="coach-box"><summary>💡 Hint / Gợi ý riêng cho bài ${i+1}</summary><p><b>🇬🇧 Your task:</b> ${esc(prompt)}</p><p><b>🇻🇳 Yêu cầu:</b> ${esc(taskVi)}</p><p><b>🇬🇧 Hint:</b> ${esc(advice)}</p><p><b>🇻🇳 Gợi ý:</b> ${esc(hintVi)}</p><p><b>Vocabulary / Từ vựng:</b> ${esc(unitWords.join(' • '))}</p></details><details class="coach-box"><summary>📗 Sample answer / Bài nói mẫu riêng</summary><p><b>🇬🇧 Model answer:</b> ${esc(sample||'')}</p><p class="small">Đây là bài mẫu cho chính câu hỏi này. Em thay các thông tin cá nhân bằng thông tin của mình.</p></details>`;
+ return `<details class="coach-box"><summary>📗 Sample answer / Bài nói mẫu riêng</summary><p><b>🇬🇧 Model answer:</b> ${esc(sample||'')}</p><p class="small">Đây là bài mẫu cho chính câu hỏi này. Em thay các thông tin cá nhân bằng thông tin của mình.</p></details>`;
 }
 const _e6SpeakingBeforeSpecific = renderSpeaking;
 renderSpeaking = function(x){
@@ -861,7 +861,7 @@ function e6WritingSpecificCoach(x,i,prompt){
  const vocab=(x.vocab||[]).slice(0,5).map(v=>v[0]+' = '+v[3]);
  const length=(String(prompt).match(/(\d+)\s*[-–]\s*(\d+)\s*words?/i)||[]);
  const rule=length.length?` Check length: ${length[1]}–${length[2]} words.`:'';
- return `<details class="coach-box"><summary>💡 Hint riêng • Gợi ý Anh–Việt (Bài ${i+1})</summary><p><b>🇬🇧 English:</b> ${esc(hint.en+rule)}</p><p><b>🇻🇳 Tiếng Việt:</b> ${esc(hint.vi)}</p><p><b>Vocabulary / Từ vựng:</b> ${esc(vocab.join(' • '))}</p></details><details class="coach-box"><summary>📗 Sample Writing • Bài mẫu riêng cho đề này</summary><p style="white-space:pre-wrap;line-height:1.7"><b>🇬🇧 Sample answer:</b> ${esc(model)}</p><p class="small">Bài mẫu giúp em tham khảo. Hãy viết về thông tin và ý tưởng của chính em.</p></details>`;
+ return `<details class="coach-box"><summary>📗 Sample Writing • Bài mẫu riêng cho đề này</summary><p style="white-space:pre-wrap;line-height:1.7"><b>🇬🇧 Sample answer:</b> ${esc(model)}</p><p class="small">Bài mẫu giúp em tham khảo. Hãy viết về thông tin và ý tưởng của chính em.</p></details>`;
 }
 const _e6WritingBeforeSpecific = renderWriting;
 renderWriting = function(x){
