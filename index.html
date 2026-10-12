@@ -105,14 +105,137 @@ html{scroll-behavior:smooth}body{background:radial-gradient(circle at 5% 13%,#f5
 .e6v5-conv-actions{display:flex;gap:8px;flex-wrap:wrap}.e6v5-conv .btn{font-size:13px;padding:8px 11px}.e6v5-conv strong{color:#174b80}
 .e6v5-local-report summary{cursor:pointer;color:#5340ad;font-size:15px}.e6v5-local-report{background:#f8f5ff;border:1px solid #ddd6fe;border-radius:14px;padding:12px}
 @media(max-width:620px){.e6v5-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.e6v5-conv-actions .btn{flex:1}}
+
+/* ================= HOME V6 - 12 COMPACT JOURNEY STAGES ================= */
+#home .home-hero{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;margin-bottom:0;padding:22px 28px;border:1px solid #ddd8f7;border-radius:23px;background:linear-gradient(116deg,#f0eaff 0%,#fdf1f8 51%,#dff7f3 100%);box-shadow:0 9px 24px #7c6fa216;overflow:hidden}
+#home .home-hero:after{display:none}
+#home .home-welcome{min-width:0;position:relative;z-index:1}
+#home .home-eyebrow{color:#7260b8;font-weight:900;font-size:11px;letter-spacing:.13em}
+#home .home-welcome h1{font-size:clamp(25px,3.1vw,38px);line-height:1.16;letter-spacing:-.035em;margin:8px 0 7px;white-space:normal!important;color:#3d347a}
+#home .home-welcome h1 span{color:#df6693;font-weight:800}
+#home .home-welcome p{font-size:14px;line-height:1.5;margin:0;color:#5b6687;max-width:unset}
+#home .home-side{display:flex;flex-direction:column;gap:10px;align-items:flex-end;min-width:0}
+#home .home-progress-pill{display:flex;align-items:center;gap:11px;background:#ffffffd9;border:1px solid #fff;box-shadow:0 4px 14px #7966a91b;padding:10px 15px;border-radius:16px;min-width:178px}
+#home .home-trophy{font-size:27px;line-height:1}
+#home .home-progress-pill strong{display:block;font-size:23px;line-height:1;color:#5745ae;font-variant-numeric:tabular-nums}
+#home .home-progress-pill small{display:block;color:#66718e;font-size:11px;font-weight:700;margin-top:4px;white-space:nowrap}
+#home .student-bar{margin:0;justify-content:flex-end;max-width:270px}
+#home .student-bar .pill{font-weight:800;font-size:12px;box-shadow:none;border-color:#f4edff;padding:7px 11px;overflow-wrap:anywhere;max-width:100%}
+#home #apiPill{display:none!important}
+#home .home-journey-heading{margin:23px 3px 13px;align-items:end;flex-wrap:wrap}
+#home .home-journey-heading .section-kicker{font-size:11px;color:#8b7bb5}
+#home .home-journey-heading h2{font-size:24px;letter-spacing:-.02em;margin:5px 0 0;color:#3c3767}
+#home .home-journey-heading .section-count{box-shadow:none;border:1px solid #ede6fc;background:#fffdfb;color:#7561a8;padding:8px 13px;font-size:12px}
+#home #unitGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+#home #unitGrid .journey-card{appearance:none;-webkit-appearance:none;font:inherit;color:#35405f;text-align:left;min-width:0;width:100%;min-height:157px;display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden;cursor:pointer;padding:15px 16px 13px;border:1px solid #e6e5f2;border-top:4px solid var(--journey-color);border-radius:17px;background:linear-gradient(151deg,color-mix(in srgb,var(--journey-color) 7%,white),#fff 64%);box-shadow:0 4px 14px #484b7d10;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+#home #unitGrid .journey-card:hover{transform:translateY(-3px);box-shadow:0 11px 22px #4b447a20;border-color:color-mix(in srgb,var(--journey-color) 40%,#fff)}
+#home #unitGrid .journey-card:focus-visible{outline:3px solid #7661da;outline-offset:3px}
+#home #unitGrid .journey-card.is-complete{background:linear-gradient(151deg,#effdf7,#fff 69%)}
+#home .journey-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;min-width:0}
+#home .journey-label{font-weight:900;font-size:10px;letter-spacing:.07em;color:var(--journey-color);white-space:nowrap}
+#home .journey-label em{font-style:normal;color:#8690a8;font-weight:700;letter-spacing:0}
+#home .journey-emoji{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;font-size:23px;line-height:1;border-radius:13px;background:color-mix(in srgb,var(--journey-color) 13%,white)}
+#home .journey-name{display:block;width:100%;font-size:16px;font-weight:850;letter-spacing:-.012em;line-height:1.23;margin:6px 0 10px;color:#303653;overflow-wrap:normal;hyphens:auto}
+#home .journey-card-bottom{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%}
+#home .journey-status{font-size:12px;font-weight:750;color:#677389}
+#home .journey-arrow{width:26px;height:26px;flex:0 0 26px;border-radius:50%;background:var(--journey-color);color:white;font-size:17px;font-weight:800;text-align:center;line-height:24px;transition:transform .16s ease}
+#home .journey-card:hover .journey-arrow{transform:translateX(2px)}
+#home .journey-progress{display:block;width:100%;height:5px;border-radius:100px;background:#ebedf5;margin-top:9px;overflow:hidden}
+#home .journey-progress i{display:block;height:100%;border-radius:100px;background:var(--journey-color);transition:width .2s ease}
+#home .home-progress-details{border:1px solid #e6e0f7;border-radius:16px;background:#fffefc;margin:19px 0 4px;box-shadow:0 4px 12px #7661da0b;overflow:hidden}
+#home .home-progress-details>summary{cursor:pointer;list-style:none;padding:14px 18px;color:#5946a2;font-size:14px;font-weight:850;display:flex;align-items:center;justify-content:space-between;gap:10px}
+#home .home-progress-details>summary::-webkit-details-marker{display:none}
+#home .home-details-chevron{font-size:21px;line-height:1;transition:transform .2s}
+#home .home-progress-details[open] .home-details-chevron{transform:rotate(180deg)}
+#home #learningDashboard{padding:0 16px 15px}
+#home #learningDashboard .learning-board{margin:0;border:0;box-shadow:none;padding:6px 0 12px}
+@media(max-width:1000px){#home #unitGrid{grid-template-columns:repeat(3,minmax(0,1fr))}#home .home-hero{gap:15px}}
+@media(max-width:720px){
+ #home #unitGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ #home .home-hero{display:block;border-radius:19px;padding:18px 17px}
+ #home .home-welcome h1{font-size:clamp(23px,5.7vw,30px)}
+ #home .home-welcome p{font-size:13px}
+ #home .home-side{margin-top:12px;flex-direction:row;align-items:center;justify-content:space-between;gap:9px}
+ #home .home-progress-pill{padding:7px 10px;min-width:0;gap:7px;flex:0 0 auto;border-radius:12px}
+ #home .home-trophy{font-size:20px}
+ #home .home-progress-pill strong{font-size:17px}
+ #home .home-progress-pill small{font-size:10px;margin-top:2px}
+ #home .student-bar{flex:1;min-width:0;max-width:unset;justify-content:flex-end}
+ #home .student-bar .pill{font-size:11px;padding:7px 9px}
+ #home .home-journey-heading{margin:20px 3px 12px;gap:7px}
+ #home .home-journey-heading h2{font-size:21px}
+ #home .home-journey-heading .section-count{display:none}
+ #home #unitGrid .journey-card{padding:12px 12px 11px;min-height:157px;border-radius:15px}
+ #home .journey-emoji{width:33px;height:33px;flex-basis:33px;font-size:20px;border-radius:11px}
+ #home .journey-label{font-size:9.5px;letter-spacing:0}
+ #home .journey-label em{display:block;margin-top:3px;font-size:10px}
+ #home .journey-name{font-size:14px;line-height:1.25;margin:8px 0 9px}
+ #home .journey-status{font-size:11px}
+ #home .journey-arrow{width:23px;height:23px;flex-basis:23px;line-height:21px;font-size:15px}
+}
+@media(max-width:360px){#home #unitGrid{gap:8px}#home #unitGrid .journey-card{padding:10px;min-height:158px}#home .home-progress-pill small{font-size:9px}#home .journey-name{font-size:13px}#home .home-side{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){#home .journey-card,#home .journey-arrow,#home .journey-progress i{transition:none!important}}
+/* ================= END HOME V6 ================= */
+/* V7: mobile speaking tools and honest audio fallback */
+.e6v7-mic-tools,.e6v7-mic-line{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:9px 0}
+.e6v7-mic-tools span,.e6v7-mic-line span{font-size:13px;line-height:1.5;color:#475569}
+.e6v7-mic-help{border:1px solid #d7ddee;border-radius:12px;background:#f9fbff;padding:10px 12px;margin:10px 0;font-size:13px;line-height:1.7;color:#465268}
+.e6v7-mic-help summary{cursor:pointer;font-weight:700;color:#394f78}
+.e6v7-mic-help[open] summary{margin-bottom:7px}
+.e6v7-speaking-guide{background:#f4faff;border:1px solid #c8dcf0;border-radius:12px;padding:12px;font-size:14px;line-height:1.6;margin:10px 0}
+.e6v7-rec-result{font-size:13px;line-height:1.5;color:#3e536b;margin:8px 0;overflow-wrap:anywhere}
+.e6v7-rec-result audio{display:block;width:100%;max-width:420px;min-height:44px;margin:9px 0}
+.e6v7-rec-note{font-size:12px;color:#64748b;margin-top:7px}
+.e6v7-rec-done{color:#28714d}
+.e6v7-download{display:inline-flex;align-items:center;border:1px solid #a6bded;background:#eef4ff;color:#2857ac;border-radius:9px;padding:7px 10px;font-weight:700;text-decoration:none}
+.e6v7-recording{background:#d92f4a!important;color:#fff!important;animation:e6voicepulse 1s infinite alternate}
+@media(max-width:640px){.e6v7-mic-tools .btn,.e6v7-mic-line .btn{min-height:44px}.e6v7-rec-result audio{max-width:100%}}
+
+
+/* V8: visible speech input immediately inside the five-turn AI conversation */
+.e6v8-answer{display:grid;gap:9px;padding:12px;background:#fff;border:1px solid #a8c8fc;border-radius:14px;min-width:0}
+.e6v8-answer-heading{display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between;align-items:center;color:#1e4b84}
+.e6v8-tag{font-size:11px;font-weight:800;background:#eaf3ff;border-radius:99px;color:#3861a2;padding:5px 9px}
+.e6v8-answer-label{font-size:13px;font-weight:800;color:#34466b}
+.e6v8-answer-text{min-height:84px!important;font-size:16px!important;line-height:1.5!important;resize:vertical;background:#fff!important;max-width:100%}
+.e6v8-answer-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.e6v8-answer-actions .btn{min-height:52px;padding:10px 12px!important;font-size:14px!important}
+.e6v8-mic{background:#694ed9!important;color:#fff!important;box-shadow:0 4px 0 #dcd4fa}
+.e6v8-mic.is-listening{background:#dc3454!important;box-shadow:0 4px 0 #f6c3cf;animation:e6voicepulse 1s infinite alternate}
+.e6v8-answer-actions .btn:disabled,.e6v8-answer-extras .btn:disabled{opacity:.49;cursor:not-allowed;filter:grayscale(.5);box-shadow:none}
+.e6v8-answer-status{border-radius:10px;background:#f1f5ff;color:#334b75;padding:9px 11px;font-size:13px;line-height:1.5;min-height:40px;overflow-wrap:anywhere}
+.e6v8-answer-extras{display:flex;flex-wrap:wrap;gap:8px}
+.e6v8-answer-extras .btn{min-height:42px;font-size:12px!important;padding:8px 10px!important}
+.e6v8-record-result audio{display:block;width:100%;max-width:100%;margin:8px 0}
+.e6v8-answer-hint{font-size:12px;line-height:1.6;color:#617087}
+.e6v8-record-result a{display:inline-block;padding:6px 10px;border:1px solid #aac9df;border-radius:10px;color:#22598a;font-size:13px;font-weight:700}
+@media(max-width:620px){.e6v8-answer{padding:10px}.e6v8-answer-actions{grid-template-columns:minmax(0,1fr)}.e6v8-answer-actions .btn{font-size:15px!important;min-height:52px}.e6v8-answer-extras .btn{flex:1 1 120px}}
 </style>
 </head>
 <body>
 <div class="app">
 <div class="topbar"><div class="brand"><span class="brand-star">🌟</span> ENGLISH 6 <small>Happy Learning Journey</small></div><div class="top-actions"><button class="btn ghost" onclick="openStudent()">👤 <span class="label">Học sinh</span></button><button class="btn ghost" onclick="openTeacher()">⚙️ <span class="label">Giáo viên</span></button></div></div><div id="audioToast" class="audio-toast"></div>
-<main class="wrap"><section id="home"><div class="hero"><div class="hero-copy"><div class="hero-eyebrow">✨ HỌC TIẾNG ANH THẬT VUI ✨</div><h1>Welcome to <span>English 6!</span></h1><p>Xin chào các nhà khám phá nhỏ! Cùng chinh phục <b>12 Unit Global Success</b> qua các bài luyện tập và rèn luyện đủ 4 kỹ năng <b>Listening, Speaking, Reading, Writing</b> nhé!</p><div class="hero-stickers"><span>📚 Learn and Shine</span><span>🏆 Be Confident</span></div><div class="skill-ribbon"><span class="skill-pill">🎧 Listening</span><span class="skill-pill">🗣️ Speaking</span><span class="skill-pill">📖 Reading</span><span class="skill-pill">✍️ Writing</span></div></div><div class="hero-art" aria-hidden="true"><span class="art-sun">☀️</span><span class="art-planet">🌍</span><span class="art-book">📖</span><span class="art-pencil">✏️</span><span class="art-spark">✨</span></div><div class="student-bar"><span class="pill" id="studentPill">👤 Chưa nhập học sinh</span><span class="pill" id="apiPill">☁️ Chưa kết nối Google Sheet</span></div></div><div class="section-heading"><div><span class="section-kicker">🎒 HÀNH TRÌNH HỌC TẬP</span><h2>Chọn một Unit để khám phá!</h2></div><span class="section-count">🌟 12 chặng phiêu lưu</span></div><div id="learningDashboard"></div><div class="grid" id="unitGrid"></div></section>
+<main class="wrap"><section id="home">
+  <div class="hero home-hero">
+    <div class="home-welcome">
+      <div class="home-eyebrow">✨ HAPPY LEARNING JOURNEY</div>
+      <h1>English 6 <span>✨</span></h1>
+      <p>12 chặng học tập • Bộ sách Global Success</p>
+    </div>
+    <div class="home-side">
+      <div class="home-progress-pill" aria-live="polite"><span class="home-trophy" aria-hidden="true">🏆</span><div><strong id="homeCompletedCount">0/12</strong><small>chặng hoàn thành</small></div></div>
+      <div class="student-bar"><span class="pill" id="studentPill">👤 Chưa nhập học sinh</span><span class="pill" id="apiPill">☁️ Chưa kết nối Google Sheet</span></div>
+    </div>
+  </div>
+  <div class="section-heading home-journey-heading">
+    <div><span class="section-kicker">🗺️ HÀNH TRÌNH HỌC TẬP</span><h2>12 chặng – 12 Unit</h2></div>
+    <span class="section-count">Chọn một chặng để bắt đầu ↓</span>
+  </div>
+  <div class="grid" id="unitGrid" aria-label="12 chặng học tập tương ứng 12 Unit"></div>
+  <details class="home-progress-details"><summary>📊 Xem tiến độ chi tiết & câu cần ôn <span class="home-details-chevron" aria-hidden="true">⌄</span></summary><div id="learningDashboard"></div></details>
+</section>
 <section id="unitView" class="hidden"><button class="back" onclick="goHome()">← 12 Units</button><div id="unitHead" class="unit-head"></div><div id="tabs" class="tabs"></div><div id="panel" class="panel"></div></section></main>
-<div class="footer">English 6 • Global Success • Luyện tập theo từng Unit và theo dõi kết quả qua Google Sheet <span style="display:inline-block;margin-left:8px;font-size:11px;color:#7053aa;font-weight:700">V5 • Hội thoại AI + tiến độ học tập</span></div>
+<div class="footer">English 6 • Global Success • Luyện tập theo từng Unit và theo dõi kết quả qua Google Sheet <span style="display:inline-block;margin-left:8px;font-size:11px;color:#7053aa;font-weight:700">V8 • Hội thoại AI có micro</span></div>
 </div>
 <div class="modal hidden" id="studentModal"><div class="modal-card"><h3>👤 Thông tin học sinh</h3><p class="subtle">Chỉ cần nhập họ tên và lớp. App đã kết nối sẵn với Google Sheet của giáo viên.</p><div class="row"><label>Họ và tên<input id="stName" class="input" placeholder="Nguyễn Văn A"></label><label>Lớp<input id="stClass" class="input" placeholder="6A1"></label></div><div style="margin-top:14px;display:flex;justify-content:flex-end;gap:8px"><button class="btn light" onclick="closeModal('studentModal')">Đóng</button><button class="btn primary" onclick="saveStudent()">Vào học</button></div></div></div>
 <div class="modal hidden" id="teacherModal"><div class="modal-card"><h3>⚙️ Cài đặt giáo viên</h3><p class="subtle">Google Sheet đã được kết nối cố định với app. Học sinh không cần mã truy cập và không cần link dài.</p><div class="notice">Để dùng AI feedback và Trợ lý AI, giữ <b>GEMINI_API_KEY</b> trong Apps Script. Để giao bài, giữ <b>TEACHER_PIN</b> như hiện tại.</div><div class="fixed-link-box"><b>Link học sinh cố định</b><span id="fixedStudentUrl"></span></div><div class="row" style="margin-top:12px"><button class="btn primary" onclick="testApi()">Kiểm tra Google Sheet</button><button class="btn light" onclick="copyStudentLink()">Sao chép link</button></div><div id="apiMsg" class="result">Chưa kiểm tra kết nối Google Sheet.</div><details class="e6v5-local-report" style="margin-top:14px"><summary><b>📊 Báo cáo học tập trên thiết bị này</b></summary><p class="small">Chỉ hiển thị tiến độ của học sinh đang đăng nhập ở thiết bị hiện tại. Báo cáo toàn lớp và đồng bộ đa thiết bị cần bổ sung Code.gs.</p><div id="e6v5TeacherReport"></div><button type="button" class="btn light" onclick="e6v5ExportStudentCSV()">⬇ Xuất báo cáo CSV (mở bằng Excel)</button></details><label style="display:block;margin-top:12px">Link gửi học sinh<input id="studentLink" class="input" readonly></label><div style="margin-top:10px;display:flex;gap:8px;justify-content:flex-end"><button class="btn light" onclick="closeModal('teacherModal')">Đóng</button></div></div></div>
@@ -151,7 +274,24 @@ function progressKey(u,m){return `e6_prog_${u}_${m}`}
 function markProgress(u,m,score=1){localStorage.setItem(progressKey(u,m),JSON.stringify({done:true,score,at:Date.now()})); renderHome()}
 function unitPct(u){const core=MODULES.filter(x=>x[0]!=='assigned'&&x[0]!=='chat');let d=0; core.forEach(x=>{if(localStorage.getItem(progressKey(u,x[0])))d++}); return Math.round(d/core.length*100)}
 function estimatedActivityCount(x){const vocab=Math.min(18,x.vocab_q.length)+Math.min(10,x.vocab.length)+Math.min(6,x.vocab.length)+Math.min(6,x.vocab.length);const pron=24;const gram=x.grammar_q.length+Math.min(8,x.grammar_q.length)+Math.min(8,x.grammar_q.length)+Math.min(6,x.grammar_q.length);const listening=(x.listenings||[]).reduce((a,s)=>a+(s.qs||[]).length,0)+5;const reading=(x.readings||[]).reduce((a,s)=>a+(s.qs||[]).length,0)+5;return vocab+pron+gram+listening+reading+(x.speaking||[]).length+writingPrompts(x).length+30}
-function renderHome(){const g=$('#unitGrid');g.innerHTML=UNITS.map(u=>`<article class="unit-card" style="--unit-color:${u.color}"><div class="unit-card-top"><span class="num">CHẶNG ${String(u.id).padStart(2,'0')}</span><span class="mini-star">✦</span></div><div class="unit-mascot">${u.emoji}</div><h3>Unit ${u.id}: ${esc(u.title)}</h3><div class="meta"><div>🧩 ${esc(u.grammar)}</div><div>🔊 ${esc(u.pron)}</div></div><div class="unit-progress-head"><span>Tiến độ học tập</span><strong>${unitPct(u.id)}%</strong></div><div class="progress"><i style="width:${unitPct(u.id)}%"></i></div><button onclick="openUnit(${u.id})">${unitPct(u.id)>0?'Tiếp tục học':'Bắt đầu khám phá'} <span>→</span></button></article>`).join(''); refreshStatus()}
+function renderHome(){
+  const g=$('#unitGrid');
+  if(!g)return;
+  const progress=UNITS.map(item=>({unit:item,pct:Math.max(0,Math.min(100,unitPct(item.id)||0))}));
+  g.innerHTML=progress.map(({unit:item,pct})=>{
+    const chapter=String(item.id).padStart(2,'0');
+    const status=pct===100?'Đã hoàn thành':pct>0?`Đang học · ${pct}%`:'Bắt đầu học';
+    return `<button class="journey-card${pct===100?' is-complete':''}" type="button" style="--journey-color:${item.color}" onclick="openUnit(${item.id})" aria-label="Chặng ${item.id}, Unit ${item.id}: ${esc(item.title)}. ${status}">
+       <span class="journey-card-top"><span class="journey-label">CHẶNG ${chapter} <em>• UNIT ${item.id}</em></span><span class="journey-emoji" aria-hidden="true">${item.emoji}</span></span>
+       <span class="journey-name">${esc(item.title)}</span>
+       <span class="journey-card-bottom"><span class="journey-status">${status}</span><span class="journey-arrow" aria-hidden="true">→</span></span>
+       <span class="journey-progress" aria-hidden="true"><i style="width:${pct}%"></i></span>
+     </button>`;
+  }).join('');
+  const completed=progress.filter(x=>x.pct===100).length;
+  const count=document.getElementById('homeCompletedCount');if(count)count.textContent=`${completed}/12`;
+  refreshStatus();
+}
 function refreshStatus(){const s=student(); $('#studentPill').textContent=s.name?`👤 ${s.name} • ${s.className}`:'👤 Chưa nhập học sinh'; $('#apiPill').textContent='☁️ Google Sheet tự động kết nối'}
 function openUnit(id){currentUnit=id; currentModule='vocab'; $('#home').classList.add('hidden');$('#unitView').classList.remove('hidden'); const u=UNITS.find(x=>x.id===id); $('#unitHead').innerHTML=`<div class="unit-icon" style="background:${u.color}">${u.emoji}</div><div><h2>Unit ${u.id}: ${esc(u.title)}</h2><small>${esc(u.grammar)} • ${esc(u.pron)}</small></div>`; $('#tabs').innerHTML=MODULES.map(([k,l])=>`<button class="tab ${k===currentModule?'active':''}" onclick="showModule('${k}')">${l}</button>`).join(''); renderModule();scrollTo(0,0)}
 function goHome(){$('#unitView').classList.add('hidden');$('#home').classList.remove('hidden');renderHome();scrollTo(0,0)}
@@ -1552,6 +1692,22 @@ renderChat=function(x){
     <div class="e6v5-conv-actions"><button type="button" class="btn primary" onclick="e6v5StartConversation()">▶ Bắt đầu luyện nói</button>
       <button type="button" class="btn light" onclick="e6v5StopConversation()">⏹ Kết thúc</button></div>
     <div id="e6v5ConversationStatus" class="e6v5-small" role="status">Chưa bắt đầu lượt luyện.</div>
+    <div class="e6v8-answer" id="e6v8AnswerPanel" aria-label="Thu âm và gửi câu trả lời hội thoại">
+      <div class="e6v8-answer-heading"><span>🎧 <b id="e6v8TurnLabel">Chờ AI đặt câu hỏi</b></span><span class="e6v8-tag">5 lượt hội thoại</span></div>
+      <label for="e6v8AnswerText" class="e6v8-answer-label">Câu trả lời của em (sẽ hiện chữ sau khi nói):</label>
+      <textarea id="e6v8AnswerText" class="textarea e6v8-answer-text" rows="2" maxlength="500" placeholder="Bấm Bắt đầu luyện nói, nghe câu hỏi của AI rồi nhấn 🎙️ để trả lời..." oninput="e6v8DraftChanged()"></textarea>
+      <div class="e6v8-answer-actions">
+        <button type="button" class="btn primary e6v8-mic" id="e6v8AnswerMic" onclick="e6v8ToggleMic()" disabled>🎙️ Thu âm câu trả lời</button>
+        <button type="button" class="btn ok e6v8-send" id="e6v8AnswerSend" onclick="e6v8SendAnswer()" disabled>📤 Gửi câu trả lời</button>
+      </div>
+      <div id="e6v8VoiceStatus" class="e6v8-answer-status" role="status" aria-live="polite">Bắt đầu để AI hỏi câu đầu tiên. Sau đó em nhấn micro để nói.</div>
+      <div class="e6v8-answer-extras">
+        <button type="button" class="btn light" onclick="e6v7CheckMic('e6v8VoiceStatus')">🔍 Kiểm tra micro</button>
+        <button type="button" class="btn light" id="e6v8RecButton" onclick="e6v8ToggleRecording()" disabled>⏺ Ghi âm nghe lại</button>
+      </div>
+      <div id="e6v8RecordingResult" class="e6v8-record-result" aria-live="polite"></div>
+      <div class="e6v8-answer-hint">🎙️ Micro chuyển lời nói thành chữ để AI hiểu. Nói xong nhấn <b>Dừng thu</b>, kiểm tra chữ rồi nhấn <b>Gửi câu trả lời</b>. Nếu máy không hỗ trợ nhận dạng, em có thể gõ câu trả lời hoặc ghi âm để nghe lại; bản ghi âm dự phòng <b>không tự gửi cho AI</b>.</div>
+    </div>
   </div>`;
   return out.replace('<div class="e6-voice-panel" id="e6VoicePanel">',extra+'<div class="e6-voice-panel" id="e6VoicePanel">');
 };
@@ -1633,4 +1789,475 @@ window.addEventListener('load',()=>{
 });
 /* =============================== END V5 ================================== */
 
+/* ===========================================================================
+   V7 – mobile microphone reliability: permission diagnostics, clearer browser
+   errors and a real local-audio recording fallback for Speaking. The recorder
+   never sends audio to Apps Script, Google Sheet or Gemini.
+   =========================================================================== */
+function e6v7EmbeddedBrowser(){
+  return /zalo|fban|fbav|instagram|messenger|tiktok|micromessenger|line\/|; wv\)/i.test(navigator.userAgent||'');
+}
+function e6v7ContextWarning(){
+  const protocol=String(location.protocol||'');
+  if(protocol==='file:') return 'Em đang mở file HTML đã tải về. Hãy mở ứng dụng bằng đường link HTTPS của giáo viên; micro nhận dạng có thể không hoạt động từ file.';
+  if(!window.isSecureContext) return 'Trang hiện tại chưa dùng HTTPS. Hãy mở link HTTPS của ứng dụng rồi thử lại.';
+  if(e6v7EmbeddedBrowser()) return 'Em đang mở ứng dụng bên trong Zalo/Facebook hoặc một trình duyệt nhúng. Hãy chọn Mở trong trình duyệt để dùng Chrome (Android) hoặc Safari (iPhone).';
+  return '';
+}
+function e6v7SpeechError(code){
+  const messages={
+    'not-allowed':'Micro bị từ chối. Vào cài đặt quyền của trang, chọn Cho phép micro, tải lại trang rồi thử lại.',
+    'service-not-allowed':'Trình duyệt đã chặn dịch vụ chuyển giọng nói thành chữ. Mở trang bằng Chrome/Safari chính thức; nếu vẫn lỗi, dùng Ghi âm dự phòng.',
+    'audio-capture':'Chưa tìm thấy micro hoặc micro đang bị ứng dụng khác chiếm. Hãy thử lại sau khi đóng ứng dụng ghi âm/cuộc gọi.',
+    'network':'Dịch vụ nhận dạng lời nói không kết nối được. Micro có thể vẫn hoạt động: thử mạng khác hoặc dùng Ghi âm dự phòng.',
+    'no-speech':'Chưa nhận được lời nói. Hãy bấm micro, chờ hiện Đang nghe rồi nói gần thiết bị hơn.',
+    'language-not-supported':'Thiết bị chưa hỗ trợ ngôn ngữ này. Trong Trợ lý AI, thử chọn English (US), hoặc dùng Ghi âm dự phòng.',
+    'aborted':'Lượt nghe đã bị ngắt. Em có thể bấm micro để nói lại.',
+    'bad-grammar':'Thiết bị chưa nhận được giọng nói. Em thử bấm nói lại.',
+  };
+  return messages[code]||('Không nhận dạng được giọng nói ('+String(code||'không rõ')+'). Thử Chrome/Safari hoặc chức năng Ghi âm dự phòng.');
+}
+function e6v7DeviceMicError(e){
+  const code=e?.name||'';
+  if(/NotAllowed|PermissionDenied|Security/.test(code))return 'Trình duyệt chưa được cấp quyền micro. Mở cài đặt trang → Micro → Cho phép và thử lại.';
+  if(/NotFound|DevicesNotFound/.test(code))return 'Không tìm thấy thiết bị micro. Hãy kiểm tra micro trên điện thoại/máy tính.';
+  if(/NotReadable|TrackStart/.test(code))return 'Micro có thể đang được ứng dụng khác sử dụng. Hãy đóng cuộc gọi/ứng dụng ghi âm rồi thử lại.';
+  if(/Overconstrained/.test(code))return 'Thiết bị không đáp ứng cấu hình micro. Hãy dùng trình duyệt chính thức và thử lại.';
+  return 'Không mở được micro: '+(e?.message||code||'lỗi không xác định');
+}
+function e6v7WriteStatus(id,msg,isError=false){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.textContent=msg;el.style.color=isError?'#b91c1c':'#345079';
+}
+function e6v7MicHelpHtml(){return `<details class="e6v7-mic-help">
+  <summary>🎤 Không nói được? Xem cách bật micro</summary>
+  <div>1. Mở ứng dụng bằng <strong>Chrome trên Android</strong> hoặc <strong>Safari trên iPhone</strong> (tránh mở trong Zalo/Facebook).<br>
+  2. Cho phép quyền <strong>Micro</strong> khi trình duyệt hỏi; nếu đã từ chối, vào cài đặt trang để bật lại.<br>
+  3. Dùng link website <strong>HTTPS</strong>, không mở file HTML tải về.<br>
+  4. Nếu micro hoạt động nhưng không chuyển được lời nói thành chữ, em có thể <strong>ghi âm dự phòng</strong> ở Speaking; trong Trợ lý AI, thử biểu tượng micro trên bàn phím rồi bấm Gửi.</div>
+</details>`;}
+async function e6v7CheckMic(statusId='e6VoiceStatus'){
+  const context=e6v7ContextWarning();
+  if(context){e6v7WriteStatus(statusId,context,true);return false}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    e6v7WriteStatus(statusId,'Trình duyệt chưa cho phép kiểm tra micro. Hãy mở bằng Chrome/Safari từ link HTTPS.',true);return false;
+  }
+  e6StopVoiceCapture(true);
+  e6v7WriteStatus(statusId,'Đang kiểm tra micro... Nếu thấy bảng hỏi quyền, em chọn Cho phép.');
+  let stream=null;
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const speech=!!(window.SpeechRecognition||window.webkitSpeechRecognition);
+    e6v7WriteStatus(statusId,speech
+      ?'✅ Micro hoạt động. Em có thể nhấn Nói với AI. Nếu nói mà không ra chữ, lỗi thuộc dịch vụ nhận dạng của trình duyệt; hãy thử mạng khác hoặc Ghi âm dự phòng.'
+      :'✅ Micro hoạt động, nhưng trình duyệt chưa hỗ trợ đổi tiếng nói thành chữ. Hãy dùng Ghi âm dự phòng ở Speaking hoặc micro của bàn phím khi chat.');
+    return true;
+  }catch(e){e6v7WriteStatus(statusId,e6v7DeviceMicError(e),true);return false}
+  finally{if(stream)stream.getTracks().forEach(t=>{try{t.stop()}catch(_){}})}
+}
+const e6v7OldVoicePanelHtml=e6VoicePanelHtml;
+e6VoicePanelHtml=function(){
+  let result=e6v7OldVoicePanelHtml();
+  result=result.replace('<option value="vi-VN">🇻🇳 Tiếng Việt</option>',
+    '<option value="en-US">🇺🇸 English (US)</option><option value="vi-VN">🇻🇳 Tiếng Việt</option>');
+  result=result.replace('<div class="e6-voice-status" id="e6VoiceStatus"',
+    '<div class="e6v7-mic-tools"><button type="button" class="btn light" onclick="e6v7CheckMic()">🔍 Kiểm tra micro</button><span>Chờ hiển thị “Đang nghe”, nói rõ, kiểm tra lời nhận dạng rồi bấm Gửi.</span></div><div class="e6-voice-status" id="e6VoiceStatus"');
+  return result.replace(/<div class="small">Nếu trình duyệt không hỗ trợ micro,[\s\S]*?<\/div>/,
+    e6v7MicHelpHtml());
+};
+const e6v7OldRenderSpeaking=renderSpeaking;
+renderSpeaking=function(x){
+  let out=e6v7OldRenderSpeaking(x);
+  out=out.replace(/(<button class="btn primary" onclick="startRecognition\((\d+)\)">[^<]*<\/button>)/g,
+    (full,button,i)=>button+` <button type="button" class="btn light" id="e6v7RecBtn${i}" onclick="e6v7ToggleRecording(${i})">⏺ Ghi âm dự phòng</button><div class="e6v7-rec-result" id="e6v7RecResult${i}" role="status" aria-live="polite"></div>`);
+  return out.replace('</h3>', '</h3><div class="e6v7-speaking-guide">Em bấm <strong>Nói và nhận AI feedback</strong> khi trình duyệt hỗ trợ chuyển giọng nói thành chữ. Nếu không nhận tiếng, hãy dùng <strong>Ghi âm dự phòng</strong> để nói, nghe lại và tải bản thu. Bản ghi âm dự phòng không được AI tự động chấm.</div><div class="e6v7-mic-line"><button type="button" class="btn light" onclick="e6v7CheckMic(\'e6v7SpeakingMicStatus\')">🔍 Kiểm tra micro</button><span id="e6v7SpeakingMicStatus" role="status" aria-live="polite"></span></div>'+e6v7MicHelpHtml());
+};
+
+// Speech recognition: capture the latest provisional transcript as a fallback
+// for devices that end the event stream without a final Web Speech event.
+let e6v7SpeakingRecognition=null;
+function e6v7StopSpeakingRecognition(){
+  if(e6v7SpeakingRecognition){
+    try{e6v7SpeakingRecognition.abort()}catch(_){}
+    e6v7SpeakingRecognition=null;
+  }
+}
+startRecognition=function(i){
+  try{requireStudent()}catch(_){return}
+  const out=document.getElementById('sp'+i);
+  const context=e6v7ContextWarning();
+  if(context){e6v7WriteStatus('sp'+i,context,true);return}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){e6v7WriteStatus('sp'+i,'Trình duyệt chưa hỗ trợ chuyển lời nói thành chữ. Hãy bấm Ghi âm dự phòng, hoặc mở bằng Chrome/Safari.',true);return}
+  if(e6v7SpeakingRecognition){e6v7StopSpeakingRecognition()}
+  e6StopVoiceCapture(true);e6StopAiSpeech();
+  const unitId=currentUnit,who=e6StudentHash();
+  let recognition;
+  try{recognition=new SR()}catch(e){e6v7WriteStatus('sp'+i,e6v7DeviceMicError(e),true);return}
+  e6v7SpeakingRecognition=recognition;
+  recognition.lang='en-GB';recognition.interimResults=true;recognition.continuous=false;recognition.maxAlternatives=1;
+  const finals={};let provisional='',errorCode='';
+  e6v7WriteStatus('sp'+i,'Đang mở micro... Nếu được hỏi, em chọn Cho phép.');
+  recognition.onstart=()=>{if(e6v7SpeakingRecognition===recognition)e6v7WriteStatus('sp'+i,'🎙️ Đang nghe, em hãy nói rõ bằng tiếng Anh...')};
+  recognition.onresult=e=>{
+    if(e6v7SpeakingRecognition!==recognition)return;
+    provisional='';
+    for(let k=0;k<e.results.length;k++){
+      const item=e.results[k],phrase=String(item?.[0]?.transcript||'').trim();
+      if(item?.isFinal)finals[k]=phrase;
+      else if(phrase)provisional+=phrase+' ';
+    }
+    const text=Object.keys(finals).sort((a,b)=>Number(a)-Number(b)).map(k=>finals[k]).join(' ').trim();
+    e6v7WriteStatus('sp'+i,'🎙️ '+[text,provisional.trim()].filter(Boolean).join(' '));
+  };
+  recognition.onerror=e=>{
+    if(e6v7SpeakingRecognition!==recognition)return;
+    errorCode=e.error||'unknown';
+    e6v7WriteStatus('sp'+i,e6v7SpeechError(errorCode)+' Em có thể dùng Ghi âm dự phòng.',true);
+  };
+  recognition.onend=()=>{
+    if(e6v7SpeakingRecognition!==recognition)return;
+    e6v7SpeakingRecognition=null;
+    if(currentUnit!==unitId||e6StudentHash()!==who||currentModule!=='speaking')return;
+    const finalText=Object.keys(finals).sort((a,b)=>Number(a)-Number(b)).map(k=>finals[k]).join(' ').trim();
+    const val=(finalText||provisional).trim();
+    if(errorCode)return;
+    if(!val){e6v7WriteStatus('sp'+i,'Chưa nhận được lời nói. Em thử nói lại hoặc chọn Ghi âm dự phòng.',true);return}
+    e6RestoreSpeaking();
+    window._speakingAnswers[i]={text:val,confidence:0,prompt:u().speaking[i]};
+    e6PersistSpeaking();
+    if(out)out.innerHTML='<b>Em đã nói:</b> '+esc(val)+(finalText?'':' <span class="small">(kết quả nhận dạng tạm thời)</span>');
+    const count=Object.values(window._speakingAnswers).filter(x=>x?.text).length;
+    markProgress(currentUnit,'speaking',Math.min(1,count/u().speaking.length));
+    requestSpeakingFeedback(i,true);
+  };
+  try{recognition.start()}
+  catch(e){e6v7SpeakingRecognition=null;e6v7WriteStatus('sp'+i,'Không thể bắt đầu nhận dạng: '+(e?.message||String(e))+'. Hãy thử Ghi âm dự phòng.',true)}
+};
+
+// Browser-native audio recording: works even if remote speech-to-text is down.
+// Students can play back/download their audio, but there is no unsupported
+// claim of automatic transcription or AI pronunciation scoring.
+let e6v7Recording=null;
+const e6v7RecUrls=[];
+function e6v7RecordButton(i,active){
+  const btn=document.getElementById('e6v7RecBtn'+i);
+  if(btn){btn.textContent=active?'⏹ Dừng ghi âm':'⏺ Ghi âm dự phòng';btn.classList.toggle('e6v7-recording',!!active)}
+}
+function e6v7StopActiveRecording(){
+  const job=e6v7Recording;if(!job)return;
+  e6v7Recording=null;
+  if(job.timer)clearTimeout(job.timer);
+  try{if(job.rec.state!=='inactive')job.rec.stop();else job.stream.getTracks().forEach(t=>t.stop())}catch(_){}
+  e6v7RecordButton(job.i,false);
+}
+function e6v7ForgetRecordingUrls(){
+  while(e6v7RecUrls.length){try{URL.revokeObjectURL(e6v7RecUrls.pop())}catch(_){}}
+}
+async function e6v7ToggleRecording(i){
+  try{requireStudent()}catch(_){return}
+  if(e6v7Recording){
+    const prev=e6v7Recording;
+    e6v7StopActiveRecording();
+    if(prev.i===i)return;
+  }
+  const context=e6v7ContextWarning();
+  if(context){e6v7WriteStatus('e6v7RecResult'+i,context,true);return}
+  if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){
+    e6v7WriteStatus('e6v7RecResult'+i,'Thiết bị chưa hỗ trợ ghi âm trên web. Em hãy mở link HTTPS bằng Chrome/Safari; có thể dùng ứng dụng ghi âm của điện thoại.',true);return;
+  }
+  const unitId=currentUnit,who=e6StudentHash();
+  e6v7StopSpeakingRecognition();e6StopVoiceCapture(true);e6StopAiSpeech();
+  e6v7WriteStatus('e6v7RecResult'+i,'Đang xin quyền micro, em chọn Cho phép...');
+  let stream;
+  try{stream=await navigator.mediaDevices.getUserMedia({audio:true})}
+  catch(e){e6v7WriteStatus('e6v7RecResult'+i,e6v7DeviceMicError(e),true);return}
+  if(currentUnit!==unitId||currentModule!=='speaking'||e6StudentHash()!==who){stream.getTracks().forEach(t=>t.stop());return}
+  let rec;
+  try{
+    const supported=['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus'];
+    const mime=supported.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t));
+    rec=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream);
+  }catch(e){stream.getTracks().forEach(t=>t.stop());e6v7WriteStatus('e6v7RecResult'+i,'Thiết bị chưa hỗ trợ định dạng ghi âm: '+(e?.message||String(e)),true);return}
+  const chunks=[];let job={rec,stream,i,unitId,who,timer:null};
+  e6v7Recording=job;
+  rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};
+  rec.onerror=e=>e6v7WriteStatus('e6v7RecResult'+i,'Ghi âm bị gián đoạn. Hãy thử lại.',true);
+  rec.onstop=()=>{
+    if(job.timer)clearTimeout(job.timer);
+    stream.getTracks().forEach(t=>{try{t.stop()}catch(_){}});
+    e6v7RecordButton(i,false);
+    if(e6v7Recording===job)e6v7Recording=null;
+    if(currentUnit!==unitId||e6StudentHash()!==who||currentModule!=='speaking')return;
+    const el=document.getElementById('e6v7RecResult'+i);
+    if(!chunks.length||!el){e6v7WriteStatus('e6v7RecResult'+i,'Chưa thu được âm thanh. Hãy thử lại.',true);return}
+    const mime=rec.mimeType||chunks[0].type||'audio/webm';
+    const blob=new Blob(chunks,{type:mime});
+    const url=URL.createObjectURL(blob);e6v7RecUrls.push(url);
+    const ext=/mp4/.test(mime)?'m4a':/ogg/.test(mime)?'ogg':'webm';
+    const filename=`English6_Unit${unitId}_Speaking${i+1}.${ext}`;
+    el.innerHTML=`<div class="e6v7-rec-done"><b>✅ Đã ghi âm:</b> nghe lại trước khi nộp cho cô.</div><audio controls playsinline preload="metadata" src="${url}"></audio><a class="e6v7-download" href="${url}" download="${filename}">⬇ Tải bản ghi âm</a><div class="e6v7-rec-note">Bản thu chỉ tồn tại tạm thời trên trang này, không gửi AI/Google Sheet và không được chấm tự động.</div>`;
+  };
+  try{
+    rec.start();e6v7RecordButton(i,true);
+    e6v7WriteStatus('e6v7RecResult'+i,'🔴 Đang ghi âm... Nói rõ rồi bấm Dừng. Tối đa 60 giây.');
+    job.timer=setTimeout(()=>{if(e6v7Recording===job)e6v7StopActiveRecording()},60000);
+  }catch(e){e6v7Recording=null;stream.getTracks().forEach(t=>t.stop());e6v7RecordButton(i,false);e6v7WriteStatus('e6v7RecResult'+i,'Không bắt đầu ghi âm được: '+(e?.message||String(e)),true)}
+}
+
+// Chat transcription: preserve partial results where the browser never emits
+// a final event, surface actionable errors and do not require an AI API call
+// just to test a microphone.
+e6ToggleChatMic=function(){
+  if(e6VoiceRecognition){
+    // Clicking the mic a second time should FINALIZE the answer, not abort it.
+    const active=e6VoiceRecognition;
+    e6VoiceStatus('Đang kết thúc lượt nói và lấy lời nhận dạng...');
+    try{if(typeof active.stop==='function')active.stop();else e6StopVoiceCapture()}
+    catch(_){e6StopVoiceCapture()}
+    return;
+  }
+  try{requireStudent()}catch(_){e6VoiceStatus('Hãy nhập họ tên và lớp rồi thử nói lại.',true);return}
+  const context=e6v7ContextWarning();
+  if(context){e6VoiceStatus(context,true);return}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){e6VoiceStatus('Trình duyệt chưa hỗ trợ chuyển giọng nói thành chữ. Hãy mở link bằng Chrome/Safari; nếu vẫn không dùng được, bấm micro trên bàn phím để nhập câu hỏi rồi bấm Gửi.',true);return}
+  e6SaveVoicePrefs();e6StopAiSpeech();mobileStopSpeech(false);e6v7StopSpeakingRecognition();
+  let r;
+  try{r=new SR()}catch(e){e6VoiceStatus('Không tạo được chức năng nhận dạng: '+(e?.message||String(e)),true);return}
+  e6VoiceRecognition=r;e6VoiceCancelled=false;e6VoiceFinal='';e6VoiceListening=true;
+  const unitId=currentUnit,who=e6StudentHash();const finals={};let interim='',errorCode='';
+  const btn=document.getElementById('e6VoiceMic');
+  if(btn){btn.textContent='⏳ Đang mở micro...';btn.classList.add('e6-mic-active')}
+  e6VoiceStatus('Đang mở micro... Em hãy chọn Cho phép nếu trình duyệt hỏi.');
+  r.lang=e6VoicePrefs.inputLang;r.continuous=false;r.interimResults=true;r.maxAlternatives=1;
+  r.onstart=()=>{
+    if(e6VoiceRecognition!==r)return;
+    if(btn)btn.textContent='✅ Nói xong • bấm để hoàn tất';
+    e6VoiceStatus('🎙️ Đang nghe ('+(r.lang.startsWith('vi')?'Tiếng Việt':'English')+')...');
+  };
+  r.onresult=e=>{
+    if(e6VoiceCancelled||e6VoiceRecognition!==r)return;
+    interim='';
+    for(let k=0;k<e.results.length;k++){
+      const item=e.results[k],phrase=String(item?.[0]?.transcript||'').trim();
+      if(item?.isFinal)finals[k]=phrase;
+      else if(phrase)interim+=phrase+' ';
+    }
+    const finalText=Object.keys(finals).sort((a,b)=>Number(a)-Number(b)).map(k=>finals[k]).join(' ').trim();
+    e6VoiceStatus('🎙️ '+[finalText,interim.trim()].filter(Boolean).join(' '));
+  };
+  r.onerror=e=>{
+    if(e6VoiceCancelled||e6VoiceRecognition!==r)return;
+    errorCode=e.error||'unknown';e6VoiceStatus(e6v7SpeechError(errorCode),true);
+  };
+  r.onend=()=>{
+    if(e6VoiceRecognition!==r)return;
+    e6VoiceRecognition=null;e6VoiceListening=false;
+    if(btn){btn.textContent='🎙️ Nói với AI';btn.classList.remove('e6-mic-active')}
+    if(e6VoiceCancelled||currentUnit!==unitId||e6StudentHash()!==who||currentModule!=='chat')return;
+    if(errorCode)return;
+    const finalText=Object.keys(finals).sort((a,b)=>Number(a)-Number(b)).map(k=>finals[k]).join(' ').trim();
+    const recognized=(finalText||interim).trim();
+    if(!recognized){e6VoiceStatus('Chưa nhận được lời nói. Em thử lại hoặc dùng micro trên bàn phím để nhập chữ.',true);return}
+    const input=document.getElementById('chatInput');if(!input)return;
+    input.value=[input.value.trim(),recognized].filter(Boolean).join(' ').slice(0,500);
+    input.dispatchEvent(new Event('input',{bubbles:true}));
+    e6VoiceStatus('✅ Đã nhận: '+recognized+(e6VoicePrefs.autoSend?' • Đang gửi...':' • Em kiểm tra rồi bấm Gửi.'));
+    if(e6VoicePrefs.autoSend&&!e6ChatBusy)sendChat();
+  };
+  try{r.start()}
+  catch(e){e6VoiceRecognition=null;e6VoiceListening=false;if(btn){btn.textContent='🎙️ Nói với AI';btn.classList.remove('e6-mic-active')}e6VoiceStatus('Không mở được micro: '+(e?.message||String(e))+'. Hãy thử kiểm tra micro hoặc mở lại bằng Chrome/Safari.',true)}
+};
+
+// Avoid leaving an open microphone when changing page or profile.
+const e6v7OldShowModule=showModule;
+showModule=function(k){e6v7StopSpeakingRecognition();e6v7StopActiveRecording();return e6v7OldShowModule(k)};
+const e6v7OldGoHome=goHome;
+goHome=function(){e6v7StopSpeakingRecognition();e6v7StopActiveRecording();return e6v7OldGoHome()};
+const e6v7OldOpenUnit=openUnit;
+openUnit=function(id){e6v7StopSpeakingRecognition();e6v7StopActiveRecording();return e6v7OldOpenUnit(id)};
+const e6v7OldSaveStudent=saveStudent;
+saveStudent=function(){e6v7StopSpeakingRecognition();e6v7StopActiveRecording();const result=e6v7OldSaveStudent();return result};
+window.addEventListener('beforeunload',()=>{e6v7StopSpeakingRecognition();e6v7StopActiveRecording();e6v7ForgetRecordingUrls()});
+/* =============================== END V7 ================================== */
+
+
+/* ===== V8: 5-turn AI conversation speech answer controls ===== */
+let e6v8Mic=null, e6v8Recording=null, e6v8AudioUrl=null, e6v8IsSending=false;
+function e6v8ValidSession(){
+  const s=e6v5Conversation;
+  return !!(s&&!s.starting&&s.turn<5&&s.unit===currentUnit&&s.who===e6StudentHash()&&currentModule==='chat');
+}
+function e6v8SetStatus(message,isError=false){
+  const el=document.getElementById('e6v8VoiceStatus');
+  if(el){el.textContent=String(message||'');el.style.color=isError?'#b91c1c':'#334b75';el.style.background=isError?'#fff1f2':'#f1f5ff'}
+}
+function e6v8UpdateUI(){
+  const s=e6v5Conversation;
+  const ready=e6v8ValidSession();
+  const waiting=!!(s&&s.starting);
+  const btn=document.getElementById('e6v8AnswerMic');
+  const send=document.getElementById('e6v8AnswerSend');
+  const record=document.getElementById('e6v8RecButton');
+  const area=document.getElementById('e6v8AnswerText');
+  const label=document.getElementById('e6v8TurnLabel');
+  if(label)label.textContent=ready?'Lượt '+(s.turn+1)+'/5 · Em trả lời câu hỏi của AI':waiting?'Đang chờ AI đặt câu hỏi...':'Nhấn Bắt đầu luyện nói';
+  const freeChatVoice=document.getElementById('e6VoicePanel');
+  if(freeChatVoice)freeChatVoice.classList.toggle('hidden',!!s&&currentModule==='chat');
+  const freeChatComposer=document.querySelector('#panel .chat-compose');
+  if(freeChatComposer)freeChatComposer.classList.toggle('hidden',!!s&&currentModule==='chat');
+  const busy=e6v8IsSending||!!e6ChatBusy;
+  if(btn){btn.disabled=!ready||e6v8IsSending||!!e6v8Recording;btn.textContent=e6v8Mic?'⏹ Dừng thu • Giữ lời nói':'🎙️ Thu âm câu trả lời';btn.classList.toggle('is-listening',!!e6v8Mic)}
+  if(send){send.disabled=!ready||busy||!!e6v8Mic||!String(area?.value||'').trim();send.textContent=e6v8IsSending?'⏳ Đang gửi...':'📤 Gửi câu trả lời'}
+  if(record){record.disabled=!ready||!!e6v8Mic||e6v8IsSending;record.textContent=e6v8Recording?'⏹ Dừng ghi âm':'⏺ Ghi âm nghe lại'}
+  if(area){area.disabled=!ready||e6v8IsSending;area.placeholder=ready?'Em nhấn micro để nói tiếng Anh, hoặc gõ câu trả lời tại đây...':waiting?'AI đang chuẩn bị câu hỏi đầu tiên...':'Bấm Bắt đầu luyện nói để AI hỏi câu đầu tiên...'}
+}
+function e6v8DraftChanged(){
+  const text=document.getElementById('e6v8AnswerText')?.value||'';
+  const input=document.getElementById('chatInput');
+  if(input)input.value=text;
+  e6v8UpdateUI();
+}
+function e6v8AbortMic(){
+  const active=e6v8Mic;e6v8Mic=null;
+  if(active){try{active.abort()}catch(_){}}
+  e6v8UpdateUI();
+}
+function e6v8ToggleMic(){
+  if(e6v8Mic){
+    const active=e6v8Mic;
+    e6v8SetStatus('Đang hoàn tất nhận dạng lời nói...');
+    try{active.stop()}catch(_){e6v8AbortMic()}
+    return;
+  }
+  if(!e6v8ValidSession())return e6v8SetStatus('Em cần bấm Bắt đầu và chờ AI hỏi câu đầu tiên trước.',true);
+  try{requireStudent()}catch(_){return e6v8SetStatus('Em hãy nhập họ tên và lớp trước khi luyện nói.',true)}
+  const context=e6v7ContextWarning();if(context)return e6v8SetStatus(context,true);
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR)return e6v8SetStatus('Trình duyệt chưa hỗ trợ nhận dạng tiếng nói. Em mở link HTTPS bằng Chrome/Safari, hoặc gõ câu trả lời; có thể dùng Ghi âm nghe lại.',true);
+  e6v8StopRecording();e6StopVoiceCapture(true);e6StopAiSpeech();mobileStopSpeech(false);
+  const area=document.getElementById('e6v8AnswerText');if(!area)return;
+  const base=area.value.trim();const uid=currentUnit,who=e6StudentHash(),session=e6v5Conversation;
+  let r;try{r=new SR()}catch(e){return e6v8SetStatus('Không mở được chức năng nói: '+(e?.message||String(e)),true)}
+  e6v8Mic=r;
+  const finals={};let interim='',errorCode='';
+  r.lang='en-GB';r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+  e6v8SetStatus('Đang mở micro... Nếu điện thoại hỏi quyền, em hãy chọn Cho phép.');e6v8UpdateUI();
+  r.onstart=()=>{if(e6v8Mic!==r)return;e6v8SetStatus('🔴 Đang nghe tiếng Anh... Em nói xong hãy bấm Dừng thu.');e6v8UpdateUI()};
+  r.onresult=e=>{
+    if(e6v8Mic!==r)return;
+    interim='';
+    for(let k=0;k<e.results.length;k++){
+      const item=e.results[k],spoken=String(item?.[0]?.transcript||'').trim();
+      if(item?.isFinal)finals[k]=spoken;
+      else if(spoken)interim+=(interim?' ':'')+spoken;
+    }
+    const final=Object.keys(finals).sort((a,b)=>Number(a)-Number(b)).map(k=>finals[k]).filter(Boolean).join(' ');
+    area.value=[base,final,interim].filter(Boolean).join(' ').slice(0,500);
+    e6v8DraftChanged();
+    e6v8SetStatus('🎙️ Đang nhận: '+[final,interim].filter(Boolean).join(' ').slice(0,240));
+  };
+  r.onerror=e=>{if(e6v8Mic!==r)return;errorCode=e?.error||'unknown';e6v8SetStatus(e6v7SpeechError(errorCode)+' Em có thể gõ câu trả lời hoặc ghi âm nghe lại.',true)};
+  r.onend=()=>{
+    if(e6v8Mic!==r)return;
+    e6v8Mic=null;
+    if(currentUnit!==uid||e6StudentHash()!==who||e6v5Conversation!==session||currentModule!=='chat'){e6v8UpdateUI();return}
+    const final=Object.keys(finals).sort((a,b)=>Number(a)-Number(b)).map(k=>finals[k]).filter(Boolean).join(' ');
+    const recognized=(final||interim).trim();
+    area.value=[base,recognized].filter(Boolean).join(' ').slice(0,500);
+    e6v8DraftChanged();
+    if(recognized)e6v8SetStatus('✅ Đã nhận: '+recognized+'. Em kiểm tra chữ trong ô, sửa nếu cần, rồi bấm Gửi câu trả lời.');
+    else if(!errorCode)e6v8SetStatus('Chưa thu được lời nói. Em thử lại hoặc gõ câu trả lời vào ô.',true);
+  };
+  try{r.start()}catch(e){e6v8Mic=null;e6v8UpdateUI();e6v8SetStatus('Không thể mở micro: '+(e?.message||String(e))+'. Em hãy kiểm tra micro và quyền truy cập.',true)}
+}
+async function e6v8SendAnswer(){
+  if(e6v8IsSending||!e6v8ValidSession())return e6v8SetStatus('Hãy chờ AI đặt câu hỏi rồi trả lời.',true);
+  if(e6v8Mic)return e6v8SetStatus('Em hãy bấm Dừng thu trước khi gửi câu trả lời.',true);
+  const area=document.getElementById('e6v8AnswerText'),text=String(area?.value||'').trim();
+  if(!text)return e6v8SetStatus('Em chưa nói hoặc nhập câu trả lời.',true);
+  if(text.length>500)return e6v8SetStatus('Câu trả lời dài quá 500 ký tự; em rút gọn trước khi gửi.',true);
+  const input=document.getElementById('chatInput');if(!input)return;
+  if(e6ChatBusy)return e6v8SetStatus('AI đang trả lời; em chờ một chút nhé.');
+  const session=e6v5Conversation,turn=session.turn;
+  input.value=text;e6v8IsSending=true;e6v8UpdateUI();e6v8SetStatus('📤 Đang gửi câu trả lời cho AI...');
+  try{
+    await sendChat();
+    if(e6v5Conversation!==session||session.turn>turn){
+      area.value='';input.value='';e6v8SetStatus(session.turn>=5?'🎉 Em đã hoàn thành 5 lượt hội thoại!':'✅ Đã gửi. AI đã nhận xét và hỏi câu tiếp theo. Em có thể trả lời bằng micro.');
+    } else e6v8SetStatus('AI chưa phản hồi thành công. Câu trả lời của em vẫn ở ô để gửi lại.',true);
+  }catch(e){e6v8SetStatus('Gửi chưa thành công: '+(e?.message||String(e))+'. Em thử lại sau.',true)}
+  finally{e6v8IsSending=false;e6v8UpdateUI()}
+}
+function e6v8ReleaseAudio(){if(e6v8AudioUrl){try{URL.revokeObjectURL(e6v8AudioUrl)}catch(_){}e6v8AudioUrl=null}}
+function e6v8StopRecording(){const job=e6v8Recording;if(!job)return;e6v8Recording=null;
+  try{if(job.timer)clearTimeout(job.timer);if(job.rec.state!=='inactive')job.rec.stop()}catch(_){}
+  try{job.stream.getTracks().forEach(t=>t.stop())}catch(_){}e6v8UpdateUI();}
+async function e6v8ToggleRecording(){
+  if(e6v8Recording){e6v8StopRecording();e6v8SetStatus('Đã dừng ghi âm. Em có thể nghe lại bên dưới.');return}
+  if(!e6v8ValidSession())return e6v8SetStatus('Em bấm Bắt đầu và đợi AI đặt câu hỏi trước nhé.',true);
+  if(!window.MediaRecorder||!navigator.mediaDevices?.getUserMedia){return e6v8SetStatus('Trình duyệt chưa hỗ trợ ghi âm web. Em hãy sử dụng Chrome/Safari từ link HTTPS.',true)}
+  const context=e6v7ContextWarning();if(context)return e6v8SetStatus(context,true);
+  e6StopAiSpeech();mobileStopSpeech(false);e6StopVoiceCapture(true);
+  e6v8SetStatus('Đang xin phép dùng micro để ghi âm. Em chọn Cho phép...');
+  let stream;try{stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){return e6v8SetStatus(e6v7DeviceMicError(e),true)}
+  if(!e6v8ValidSession()){stream.getTracks().forEach(t=>t.stop());return}
+  const session=e6v5Conversation,unit=currentUnit;
+  let rec;try{
+    const preferred=['audio/webm;codecs=opus','audio/mp4','audio/webm'];
+    const mime=preferred.find(m=>MediaRecorder.isTypeSupported?.(m))||'';
+    rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined);
+  }catch(e){stream.getTracks().forEach(t=>t.stop());return e6v8SetStatus('Định dạng ghi âm không được hỗ trợ: '+(e?.message||e),true)}
+  const job={rec,stream,timer:null},chunks=[];e6v8Recording=job;e6v8UpdateUI();
+  rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};
+  rec.onerror=()=>e6v8SetStatus('Ghi âm bị gián đoạn. Em hãy thử lại.',true);
+  rec.onstop=()=>{
+    stream.getTracks().forEach(t=>t.stop());if(job.timer)clearTimeout(job.timer);
+    if(e6v8Recording===job)e6v8Recording=null;
+    if(!chunks.length||currentUnit!==unit||e6v5Conversation!==session){e6v8UpdateUI();return}
+    const blob=new Blob(chunks,{type:rec.mimeType||'audio/webm'});
+    e6v8ReleaseAudio();e6v8AudioUrl=URL.createObjectURL(blob);
+    const box=document.getElementById('e6v8RecordingResult');if(!box){e6v8UpdateUI();return}
+    box.replaceChildren();
+    const desc=document.createElement('p');desc.className='e6v8-answer-hint';desc.textContent='✅ Em có thể nghe lại bản ghi. Âm thanh chỉ ở trên thiết bị và không được gửi cho AI.';
+    const audio=document.createElement('audio');audio.controls=true;audio.playsInline=true;audio.src=e6v8AudioUrl;
+    const link=document.createElement('a');link.href=e6v8AudioUrl;link.download='English6_Unit'+unit+'_HoiThoai.'+(blob.type.includes('mp4')?'m4a':'webm');link.textContent='⬇ Tải bản ghi về máy';
+    box.append(desc,audio,link);e6v8UpdateUI();
+  };
+  try{rec.start();e6v8SetStatus('🔴 Đang ghi âm... Em nói xong bấm Dừng ghi âm, tối đa 60 giây.');job.timer=setTimeout(()=>{if(e6v8Recording===job)e6v8StopRecording()},60000)}
+  catch(e){e6v8Recording=null;stream.getTracks().forEach(t=>t.stop());e6v8UpdateUI();e6v8SetStatus('Không bắt đầu ghi âm: '+(e?.message||e),true)}
+}
+function e6v8ResetVoice(){e6v8AbortMic();e6v8StopRecording();e6v8ReleaseAudio();e6v8IsSending=false;const box=document.getElementById('e6v8RecordingResult');if(box)box.replaceChildren()}
+const e6v8OldStartConversation=e6v5StartConversation;
+e6v5StartConversation=function(){
+  e6v8ResetVoice();const area=document.getElementById('e6v8AnswerText');if(area)area.value='';
+  const chatInput=document.getElementById('chatInput');if(chatInput)chatInput.value='';
+  const res=e6v8OldStartConversation();e6v8UpdateUI();
+  e6v8SetStatus(e6v8ValidSession()?'✅ AI đã hỏi! Em bấm micro và trả lời.':'Đang mời AI hỏi câu đầu tiên. Em chờ một chút...');return res;
+};
+const e6v8OldStopConversation=e6v5StopConversation;
+e6v5StopConversation=function(){e6v8ResetVoice();const r=e6v8OldStopConversation();e6v8UpdateUI();e6v8SetStatus('Đã kết thúc luyện nói. Em có thể bắt đầu lại.');return r};
+const e6v8OldConversationStatus=e6v5ConversationStatus;
+e6v5ConversationStatus=function(message){
+  e6v8OldConversationStatus(message);e6v8UpdateUI();
+  if(String(message).includes('AI đã hỏi câu đầu')) e6v8SetStatus('✅ AI đã hỏi câu đầu tiên. Em nhấn micro, nói câu trả lời rồi bấm Dừng thu và Gửi.');
+  else if(String(message).includes('AI đã hỏi tiếp')) e6v8SetStatus('🔊 AI vừa hỏi câu tiếp theo. Em có thể bấm micro để trả lời.');
+  else if(String(message).includes('Hoàn thành 5 lượt')) e6v8SetStatus('🎉 Đã hoàn thành 5 lượt luyện nói. Em có thể luyện lại.');
+};
+const e6v8OldSendChat=sendChat;
+sendChat=async function(){try{return await e6v8OldSendChat()}finally{e6v8UpdateUI()}};
+const e6v8OldInitChat=initChatUi;
+initChatUi=function(){const r=e6v8OldInitChat();e6v8UpdateUI();return r};
+const e6v8OldShowModule=showModule;
+showModule=function(k){e6v8ResetVoice();return e6v8OldShowModule(k)};
+const e6v8OldGoHome=goHome;
+goHome=function(){e6v8ResetVoice();return e6v8OldGoHome()};
+const e6v8OldOpenUnit=openUnit;
+openUnit=function(id){e6v8ResetVoice();return e6v8OldOpenUnit(id)};
+const e6v8OldSaveStudent=saveStudent;
+saveStudent=function(){e6v8ResetVoice();return e6v8OldSaveStudent()};
+window.addEventListener('beforeunload',()=>{e6v8ResetVoice()});
+/* ===== END V8 ===== */
 </script></body></html>
