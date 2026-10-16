@@ -430,6 +430,14 @@ input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-vis
 #unitView .grammar-guide,#unitView .grammar-block{min-width:0;max-width:100%}
 #unitView .grammar-block,#unitView .formula{overflow-wrap:anywhere}
 @media(max-width:900px){#unitView .grammar-guide{grid-template-columns:minmax(0,1fr)}}
+
+/* FIX 2026-10-16: Vocabulary speaker button must stay clickable above decorative bubble */
+#unitView .flash-grid .flash:after{pointer-events:none!important;z-index:0!important}
+#unitView .flash-grid .flash>*{position:relative;z-index:1}
+#unitView .flash-grid .flash .btn{position:relative;z-index:3!important;pointer-events:auto!important}
+#unitView .flash-grid .flash button[onclick*="speak"]{width:38px;height:38px;display:grid;place-items:center;padding:0!important;border-radius:12px;float:right;background:#f2efff;color:#5a5085;border:1px solid #e4def5}
+#unitView .flash-grid .flash button[onclick*="speak"]:hover{background:#e9e2ff;border-color:#cfc2f6;transform:translateY(-1px)}
+
 </style>
 </head>
 <body>
