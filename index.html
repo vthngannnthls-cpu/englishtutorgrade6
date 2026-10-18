@@ -757,8 +757,19 @@ const asgFmt=s=>esc(s).replace(/\{u\}([\s\S]*?)\{\/u\}/gi,'<u>$1</u>').replace(/
 function norm(s){return String(s??'').trim().toLowerCase().replace(/[.,!?;:]+$/,'').replace(/\s+/g,' ')}
 function student(){return JSON.parse(localStorage.getItem('e6_student')||'{}')}
 const FIXED_API_URL='https://script.google.com/macros/s/AKfycbyI9CFD8Ta0Avl-u36iQGWD7JLOsqHPrLzPhcJV6RJDxO3_kEhs4CtXbjoXDWV-ZmW8/exec';
+const EXPECTED_SHEET_ID='1Z2N8zU0L0Je-q4VSkpXPt_kj7OUvQU5CkWq8aZMwSRY';
+const EXPECTED_PROGRESS_VERSION='E6-TIENDO-20261018-V3';
 function apiUrl(){return FIXED_API_URL}
 function setApi(v){return FIXED_API_URL}
+function e6VerifyProgressServer(r){
+  if(!r || r.ok!==true)throw new Error(r?.message||'Apps Script không phản hồi hợp lệ.');
+  if(r.version!==EXPECTED_PROGRESS_VERSION)
+    throw new Error('Web App vẫn dùng Code.gs phiên bản cũ. Cô vào Apps Script > Triển khai > Quản lý lượt triển khai > sửa lượt /exec hiện tại > Phiên bản mới > Triển khai.');
+  if(r.sheetId!==EXPECTED_SHEET_ID)
+    throw new Error('Web App đang trỏ đến sai Google Sheet. Mã Google Sheet trả về: '+(r.sheetId||'không xác định'));
+  return r;
+}
+
 // Progress is local to each student and each device. Legacy unscoped records are not attributed to anyone.
 function progressKey(u,m){
   const s=student();
@@ -846,8 +857,9 @@ async function gradePractice(varName,prefix,module,activity){
   });
   const score10=items.length?Math.round(correct/items.length*100)/10:0;
   if(res)res.innerHTML=`<div class="result"><b>${correct}/${items.length}</b> đúng • <b>${score10}/10</b> • ${answered}/${items.length} đã trả lời</div>${review.length?`<details class="prompt-card" style="margin-top:10px"><summary><b>Xem câu cần sửa (${review.length})</b></summary>${review.join('')}</details>`:'<div class="result oktxt">Xuất sắc! Em đã làm đúng tất cả câu.</div>'}<div class="save-status" id="${prefix}SaveStatus">Đang lưu kết quả về Google Sheet...</div>`;
-  if(answered===items.length)markProgress(currentUnit,currentModule,items.length?correct/items.length:0);
+  const savedUnit=currentUnit,savedModule=currentModule;
   const saved=await saveProgress(module,activity,correct,items.length,`Đã trả lời ${answered}/${items.length} câu`);
+  if(saved&&saved.ok&&answered===items.length)markProgress(savedUnit,savedModule,items.length?correct/items.length:0);
   const status=$('#'+prefix+'SaveStatus');
   if(status){
     if(saved&&saved.ok) status.innerHTML='<span class="oktxt">✓ Đã lưu kết quả về Google Sheet.</span>';
@@ -880,7 +892,7 @@ function writingPrompts(x){return [...(x.writing||[]),`Sentence builder: Write 5
 function normAns(s){return String(s??'').trim().toLowerCase().replace(/[’]/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ')}
 function textExerciseHtml(items,prefix,opts={}){items=Array.isArray(items)?items:[];return items.map((it,i)=>`<div class="textq"><strong>${i+1}. ${esc(it.q)}</strong>${it.audio?` <button class="btn light" style="padding:5px 8px" onclick='speak(${jsString(it.audio)},0.82)'>🔊 Nghe</button>`:''}${it.hint?`<div class="small">Gợi ý: ${esc(it.hint)}</div>`:''}<input class="answer-input" id="${prefix}${i}" placeholder="Nhập đáp án..."></div>`).join('')}
 function reorderExerciseHtml(items,prefix){items=Array.isArray(items)?items:[];return items.map((it,i)=>`<div class="textq"><strong>${i+1}. ${esc(it.q)}</strong><div class="reorder-prompt">${(it.chunks||[]).map(c=>`<span class="chunk">${esc(c)}</span>`).join('<span class="slash"> / </span>')}</div><div class="small">Dấu <b>/</b> dùng để phân biệt từng từ hoặc cụm từ. Em viết lại thành một câu hoàn chỉnh.</div>${it.hint?`<div class="small">Gợi ý: ${esc(it.hint)}</div>`:''}<input class="answer-input" id="${prefix}${i}" placeholder="Nhập câu hoàn chỉnh..."></div>`).join('')}
-async function gradeTextPractice(varName,prefix,module,activity){const items=window[varName]||[];let correct=0,answered=0;const review=[];items.forEach((it,i)=>{const el=$('#'+prefix+i),v=(el?.value||'').trim(),answers=(it.answers||[]).map(normAns);if(v)answered++;if(v&&answers.includes(normAns(v)))correct++;else review.push(`<div class="q"><b>Câu ${i+1}:</b> ${v?'Đáp án của em: <b>'+esc(v)+'</b><br>':'Chưa trả lời.<br>'}Đáp án gợi ý: <b>${esc((it.answers||[])[0]||'')}</b>${it.hint?`<br><span class="subtle">${esc(it.hint)}</span>`:''}</div>`)});const score10=items.length?Math.round(correct/items.length*100)/10:0;const res=$(`#${prefix}Res`);if(res)res.innerHTML=`<div class="result"><b>${correct}/${items.length}</b> đúng • <b>${score10}/10</b> • ${answered}/${items.length} đã trả lời</div>${review.length?`<details class="prompt-card" style="margin-top:10px"><summary><b>Xem câu cần sửa (${review.length})</b></summary>${review.join('')}</details>`:'<div class="result oktxt">Xuất sắc! Em đã làm đúng tất cả câu.</div>'}<div class="save-status" id="${prefix}SaveStatus">Đang lưu kết quả về Google Sheet...</div>`;if(answered===items.length)markProgress(currentUnit,currentModule,items.length?correct/items.length:0);const saved=await saveProgress(module,activity,correct,items.length,`Đã trả lời ${answered}/${items.length} câu`);const status=$('#'+prefix+'SaveStatus');if(status){if(saved&&saved.ok)status.innerHTML='<span class="oktxt">✓ Đã lưu kết quả về Google Sheet.</span>';else if(saved&&saved.skipped)status.innerHTML='<span class="badtxt">Chưa lưu Sheet: '+esc(saved.message||'chưa cấu hình')+'</span>';else status.innerHTML='<span class="badtxt">Chưa lưu được Sheet: '+esc((saved&&saved.message)||'lỗi kết nối')+'</span>'}}
+async function gradeTextPractice(varName,prefix,module,activity){const items=window[varName]||[];let correct=0,answered=0;const review=[];items.forEach((it,i)=>{const el=$('#'+prefix+i),v=(el?.value||'').trim(),answers=(it.answers||[]).map(normAns);if(v)answered++;if(v&&answers.includes(normAns(v)))correct++;else review.push(`<div class="q"><b>Câu ${i+1}:</b> ${v?'Đáp án của em: <b>'+esc(v)+'</b><br>':'Chưa trả lời.<br>'}Đáp án gợi ý: <b>${esc((it.answers||[])[0]||'')}</b>${it.hint?`<br><span class="subtle">${esc(it.hint)}</span>`:''}</div>`)});const score10=items.length?Math.round(correct/items.length*100)/10:0;const res=$(`#${prefix}Res`);if(res)res.innerHTML=`<div class="result"><b>${correct}/${items.length}</b> đúng • <b>${score10}/10</b> • ${answered}/${items.length} đã trả lời</div>${review.length?`<details class="prompt-card" style="margin-top:10px"><summary><b>Xem câu cần sửa (${review.length})</b></summary>${review.join('')}</details>`:'<div class="result oktxt">Xuất sắc! Em đã làm đúng tất cả câu.</div>'}<div class="save-status" id="${prefix}SaveStatus">Đang lưu kết quả về Google Sheet...</div>`;const savedUnit=currentUnit,savedModule=currentModule;const saved=await saveProgress(module,activity,correct,items.length,`Đã trả lời ${answered}/${items.length} câu`);if(saved&&saved.ok&&answered===items.length)markProgress(savedUnit,savedModule,items.length?correct/items.length:0);const status=$('#'+prefix+'SaveStatus');if(status){if(saved&&saved.ok)status.innerHTML='<span class="oktxt">✓ Đã lưu kết quả về Google Sheet.</span>';else if(saved&&saved.skipped)status.innerHTML='<span class="badtxt">Chưa lưu Sheet: '+esc(saved.message||'chưa cấu hình')+'</span>';else status.innerHTML='<span class="badtxt">Chưa lưu được Sheet: '+esc((saved&&saved.message)||'lỗi kết nối')+'</span>'}}
 function audioQuizHtml(qs,prefix){return qs.map((q,i)=>`<div class="q"><strong>${i+1}. ${esc(q.q)}</strong> <button class="btn light" style="padding:5px 8px" onclick='speak(${jsString(q.audio)},0.82)'>🔊 Nghe</button><div class="opts">${q.opts.map((o,j)=>`<label class="opt"><input type="radio" name="${prefix}${i}" value="${j}"> <span>${String.fromCharCode(65+j)}. ${esc(o)}</span></label>`).join('')}</div></div>`).join('')}
 function makeOpenFromQs(qs){return (qs||[]).map(q=>({q:q.q,answers:[q.opts[q.a]],hint:q.ex||''}))}
 function escapeRe(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
@@ -1270,9 +1282,10 @@ async function saveSpeaking(){
  if(button)button.disabled=true;
  setStatus('Đang lưu kết quả...');
  try{
-  markProgress(currentUnit,'speaking',null);
+  const savedUnit=currentUnit;
   const saved=await saveProgress('Speaking','Speaking practice',texts.length,u().speaking.length,`Đã trả lời ${texts.length}/${u().speaking.length} câu`);
-  setStatus(saved?.ok?'Đã đồng bộ kết quả luyện nói.':'Đã ghi nhận tiến độ trên thiết bị; chưa đồng bộ được kết quả. Em thử lưu lại.',saved?.ok?'oktxt':'badtxt');
+  if(saved?.ok)markProgress(savedUnit,'speaking',null);
+  setStatus(saved?.ok?'Đã đồng bộ kết quả luyện nói.':'Chưa lưu được vào Google Sheet: '+(saved?.message||'Lỗi kết nối'),saved?.ok?'oktxt':'badtxt');
  }catch(_){setStatus('Chưa lưu được kết quả. Em thử lại.','badtxt')}
  finally{if(button)button.disabled=false}
 }
@@ -1287,15 +1300,15 @@ async function saveProgress(module,activity,correct,total,note=''){
     note:String(note||'').slice(0,320),name:s.name,className:s.className,studentId:s.studentId||''};
   try{
     const r=await jsonp('saveProgress',payload,35000);
-    if(!r||r.ok!==true)throw new Error(r?.message||'Google Sheet chưa xác nhận lưu.');
+    e6VerifyProgressServer(r);
     if(e6StudentHash()===who){
-      e6SheetStatus={who,ok:true,text:'✓ Tiến độ vừa được lưu vào Google Sheet (TIEN_DO).'};
+      e6SheetStatus={who,ok:true,text:'✓ Đã lưu vào Google Sheet cô chọn, tab TIEN_DO, dòng '+r.row+'.'};
       renderHome();
     }
     return r;
   }catch(e){
     if(e6StudentHash()===who){
-      e6SheetStatus={who,ok:false,text:'⚠️ Chưa lưu được lên Google Sheet: '+(e.message||'Lỗi kết nối')+'. Không tự gửi lại.'};
+      e6SheetStatus={who,ok:false,text:'⚠️ Chưa lưu được lên Google Sheet: '+(e.message||'Lỗi kết nối')+'.'};
       renderHome();
     }
     return {ok:false,message:e.message||'Lỗi kết nối Google Sheet'};
@@ -1348,7 +1361,16 @@ function openStudent(){const s=student();$('#stName').value=s.name||'';$('#stCla
 function saveStudent(){const s={name:$('#stName').value.trim(),className:$('#stClass').value.trim(),studentId:''};if(!s.name||!s.className){alert('Cần nhập Họ tên và Lớp.');return}localStorage.setItem('e6_student',JSON.stringify(s));closeModal('studentModal');refreshStatus()}
 function openTeacher(){$('#teacherModal').classList.remove('hidden');$('#teacherCheckConnection')?.focus()}
 function closeModal(id){$('#'+id).classList.add('hidden')}
-function testApi(){const msg=$('#apiMsg');if(msg)msg.textContent='Đang kiểm tra...';jsonp('ping',{}).then(r=>{if(r&&r.ok){if(msg)msg.innerHTML=`<span class="oktxt">✓ Kết nối thành công: ${esc(r.sheetName||'Google Sheet')}</span><br>${r.aiReady?'<span class="oktxt">🤖 AI đã được thiết lập.</span>':'<span class="badtxt">🤖 Chưa thiết lập AI.</span>'}<br>${r.teacherReady?'<span class="oktxt">📝 Giao bài giáo viên sẵn sàng.</span>':'<span class="badtxt">📝 Chưa thiết lập mã giáo viên.</span>'}`;refreshStatus()}else{if(msg)msg.innerHTML=`<span class="badtxt">${esc((r&&r.message)||'Không kết nối được')}</span>`}}).catch(e=>{if(msg)msg.innerHTML=`<span class="badtxt">Lỗi: ${esc(e.message)}</span>`})}
+function testApi(){
+ const msg=$('#apiMsg'); if(msg)msg.textContent='Đang kiểm tra đúng Google Sheet...';
+ jsonp('ping',{},25000).then(r=>{
+   try{
+     e6VerifyProgressServer(r);
+     if(msg)msg.innerHTML='<span class="oktxt">✓ Đúng Google Sheet cần lưu: '+esc(r.sheetName)+'.</span><br>Tab TIEN_DO đang có '+esc(r.progressLastRow||1)+' dòng (tính cả tiêu đề).<br><span class="oktxt">✓ Code.gs đã triển khai bản '+esc(r.version)+'.</span><br>Để kiểm tra quyền GHI, cô chạy testWrite() trong Apps Script.';
+   }catch(e){if(msg)msg.innerHTML='<span class="badtxt">✗ '+esc(e.message)+'</span>'}
+ }).catch(e=>{if(msg)msg.innerHTML='<span class="badtxt">✗ Không kết nối được Web App ('+esc(e.message)+'). Kiểm tra lại quyền truy cập lượt triển khai và URL /exec.</span>'})
+}
+
 function jsonp(action,payload,timeoutMs=20000){return new Promise((resolve,reject)=>{const base=apiUrl();if(!base)return reject(new Error('Chưa cấu hình Google Apps Script.'));const cb='cb_'+Date.now()+'_'+Math.random().toString(36).slice(2);let done=false;window[cb]=r=>{if(done)return;done=true;resolve(r);cleanup()};const sc=document.createElement('script');const sep=base.includes('?')?'&':'?';sc.src=base+sep+'action='+encodeURIComponent(action)+'&payload='+encodeURIComponent(JSON.stringify(payload||{}))+'&callback='+cb;sc.onerror=()=>{if(done)return;done=true;reject(new Error('Không tải được Web App.'));cleanup()};function cleanup(){try{delete window[cb]}catch(e){};try{sc.remove()}catch(e){}}document.body.appendChild(sc);setTimeout(()=>{if(!done&&window[cb]){done=true;reject(new Error('Hết thời gian chờ phản hồi.'));cleanup()}},timeoutMs)})}
 window.addEventListener('load',()=>{AUDIO.enabled=true;AUDIO.volume=.85;try{localStorage.removeItem('e6_api');localStorage.removeItem('e6_teacher_pin');for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i);if(key&&key.includes('_asgTeacherPin'))localStorage.removeItem(key)}if(location.search){history.replaceState({},'',location.pathname+location.hash)}}catch(e){}renderHome();if(!student().name)setTimeout(openStudent,250);if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{})}});
 
@@ -3052,7 +3074,7 @@ async function e6RefreshProgress(){
   try{
     const r=await jsonp('getProgress',{name:s.name,className:s.className,studentId:s.studentId||''},35000);
     if(seq!==e6ProgressLoadSeq||who!==e6StudentHash())return;
-    if(!r||r.ok!==true)throw new Error(r?.message||'Không đọc được bảng TIEN_DO.');
+    e6VerifyProgressServer(r);
     const records=r.records&&typeof r.records==='object'&&!Array.isArray(r.records)?r.records:{};
     e6SheetRemote={who,records};
     e6SheetStatus={who,ok:true,text:'✓ Đã cập nhật tiến độ từ Google Sheet. Hoạt động luyện tập đã lưu: '+(Number(r.savedActivities)||0)+'.'};
