@@ -767,7 +767,11 @@ function progressKey(u,m){
 }
 function progressRecord(u,m){
   const k=progressKey(u,m);if(!k)return null;
-  try{return JSON.parse(localStorage.getItem(k)||'null')}catch(_){return null}
+  let local=null;try{local=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}
+  const remote=(e6SheetRemote.who===e6StudentHash())?e6SheetRemote.records[u+'|'+m]:null;
+  if(!remote)return local;
+  if(!local)return remote;
+  return Number(remote.at||0)>Number(local.at||0)?remote:local;
 }
 function markProgress(u,m,score=null){
   const k=progressKey(u,m);if(!k)return;
@@ -1267,14 +1271,36 @@ async function saveSpeaking(){
  setStatus('Đang lưu kết quả...');
  try{
   markProgress(currentUnit,'speaking',null);
-  const saved=await saveProgress('Speaking','Speaking practice',texts.length,u().speaking.length,texts.join(' | '));
+  const saved=await saveProgress('Speaking','Speaking practice',texts.length,u().speaking.length,`Đã trả lời ${texts.length}/${u().speaking.length} câu`);
   setStatus(saved?.ok?'Đã đồng bộ kết quả luyện nói.':'Đã ghi nhận tiến độ trên thiết bị; chưa đồng bộ được kết quả. Em thử lưu lại.',saved?.ok?'oktxt':'badtxt');
  }catch(_){setStatus('Chưa lưu được kết quả. Em thử lại.','badtxt')}
  finally{if(button)button.disabled=false}
 }
 function wordCount(i){const t=$('#wr'+i).value.trim();$('#wc'+i).textContent=(t?t.split(/\s+/).length:0)+' words'}
 function requireStudent(){const s=student();if(!s.name||!s.className){openStudent();throw new Error('Hãy nhập Họ tên và Lớp trước.')}return s}
-function saveProgress(module,activity,correct,total,note=''){if(!apiUrl())return Promise.resolve({ok:false,skipped:true,message:'Chưa kết nối Google Sheet'});let s;try{s=requireStudent()}catch(e){return Promise.resolve({ok:false,skipped:true,message:e.message||'Chưa nhập học sinh'})}return jsonp('saveProgress',{unit:currentUnit,unitTitle:u().title,module,activity,correct,total,note,name:s.name,className:s.className,studentId:s.studentId||''}).then(r=>r&&typeof r==='object'?r:{ok:false,message:'Phản hồi không hợp lệ từ Google Sheet'}).catch(e=>({ok:false,message:e.message||'Lỗi kết nối Google Sheet'}))}
+async function saveProgress(module,activity,correct,total,note=''){
+  if(!apiUrl())return {ok:false,skipped:true,message:'Chưa kết nối Google Sheet'};
+  let s;try{s=requireStudent()}catch(e){return {ok:false,skipped:true,message:e.message||'Chưa nhập học sinh'}}
+  // Capture student and Unit at submit time, so changing tabs will not relabel the result.
+  const unit=currentUnit,unitTitle=u().title,who=e6StudentHash();
+  const payload={unit,unitTitle,module,activity,correct,total,
+    note:String(note||'').slice(0,320),name:s.name,className:s.className,studentId:s.studentId||''};
+  try{
+    const r=await jsonp('saveProgress',payload,35000);
+    if(!r||r.ok!==true)throw new Error(r?.message||'Google Sheet chưa xác nhận lưu.');
+    if(e6StudentHash()===who){
+      e6SheetStatus={who,ok:true,text:'✓ Tiến độ vừa được lưu vào Google Sheet (TIEN_DO).'};
+      renderHome();
+    }
+    return r;
+  }catch(e){
+    if(e6StudentHash()===who){
+      e6SheetStatus={who,ok:false,text:'⚠️ Chưa lưu được lên Google Sheet: '+(e.message||'Lỗi kết nối')+'. Không tự gửi lại.'};
+      renderHome();
+    }
+    return {ok:false,message:e.message||'Lỗi kết nối Google Sheet'};
+  }
+}
 function submitWriting(i){let st;try{st=requireStudent()}catch(e){return}const text=$('#wr'+i).value.trim();if(!text){alert('Bài viết đang trống.');return}if(text.length>1800){alert('Bài viết quá dài đối với chức năng gửi hiện tại. Hãy giữ dưới khoảng 1800 ký tự.');return}const wc=text.split(/\s+/).length;if(!apiUrl()){alert('Chưa kết nối Google Sheet/AI. Giáo viên cần cấu hình Web App trước.');return}const btn=$('#wrBtn'+i),box=$('#wrFb'+i);const cacheKey=aiLocalKey('writing',currentUnit,i,text);const cached=aiLocalGet(cacheKey);if(cached){box.innerHTML=renderFeedbackBox(cached,'writing')+'<div class="small">✓ Dùng lại feedback đã có cho cùng bài viết, không gọi API thêm.</div>';box.scrollIntoView({behavior:'smooth',block:'center'});return}const requestId=makeAiRequestId('W',currentUnit,i,text,st);const payload={unit:currentUnit,unitTitle:u().title,title:writingPrompts(u())[i],text,wordCount:wc,name:st.name,className:st.className,studentId:st.studentId||'',requestId};btn.disabled=true;box.innerHTML='<div class="result"><span class="spinner"></span>AI đang nhận xét...</div>';enqueueAiJob(()=>aiRequestWithRetry('aiwriting',payload,msg=>{box.innerHTML=`<div class="result"><span class="spinner"></span>${esc(msg)}</div>`}),150).then(async r=>{if(r&&r.aiOk){showAndCacheWritingFeedback(box,cacheKey,r);markProgress(currentUnit,'writing',null);return}box.innerHTML=renderFeedbackBox(r,'writing');const recovered=await pollStoredFeedback('writing',requestId,box,cacheKey,45000);if(recovered)markProgress(currentUnit,'writing',null)}).catch(async e=>{box.innerHTML='<div class="result"><span class="spinner"></span>AI đã có thể chấm xong. Đang lấy nhận xét từ Google Sheet...</div>';const recovered=await pollStoredFeedback('writing',requestId,box,cacheKey,60000);if(recovered){markProgress(currentUnit,'writing',null);return}try{await jsonp('savewriting',payload,25000)}catch(_){}box.innerHTML=`<div class="feedback-card"><h4>🤖 Chưa lấy được feedback</h4><div>${esc(e.message)} Em có thể bấm <b>🔄 Xem feedback đã chấm</b> để kiểm tra lại.</div></div>`}).finally(()=>btn.disabled=false)}
 
 function showAndCacheWritingFeedback(box,cacheKey,r){box.innerHTML=renderFeedbackBox(r,'writing')+'<div class="small">✓ Đã nhận xét; có thể xem lại trên máy.</div>';if(r&&r.aiOk)aiLocalSet(cacheKey,r);setTimeout(()=>box.scrollIntoView({behavior:'smooth',block:'center'}),50)}
@@ -1537,7 +1563,7 @@ function v3Dashboard(){
  const graded=UNITS.map(x=>unitPracticeScore(x.id)).filter(v=>v!==null);
  const averageScore=graded.length?(graded.reduce((a,b)=>a+b,0)/graded.length).toFixed(1):null;
  const errors=v3SafeGet(v3StoreKey('wrong'),[]);
- return `<section class="learning-board"><h3>📊 Tiến độ học tập</h3><p class="subtle">Phần đã luyện: <b>${avg}%</b>${averageScore!==null?` • Điểm luyện tập trung bình: <b>${averageScore}/10</b>`:''}<br>Tiến độ được lưu riêng cho từng học sinh trên thiết bị này. Điểm luyện tập không phải điểm kiểm tra.</p><div class="skills">${cells}</div>${errors.length?`<div class="error-review"><b>🔁 Ôn lại câu sai (${errors.length} gần nhất)</b><div>${errors.slice(-6).reverse().map(x=>`<div class="review-chip">Unit ${x.unit} • ${esc(x.module)}: ${esc(x.question).slice(0,70)}</div>`).join('')}</div><button class="btn light" onclick="v3OpenWrongReview()">📖 Xem & ôn câu sai</button></div>`:''}</section>`;
+ return `<section class="learning-board"><h3>📊 Tiến độ học tập</h3><p class="subtle">Phần đã luyện: <b>${avg}%</b>${averageScore!==null?` • Điểm luyện tập trung bình: <b>${averageScore}/10</b>`:''}<br>Tiến độ hiển thị từ thiết bị và kết quả đã lưu trên Google Sheet. Điểm luyện tập không phải điểm kiểm tra.</p><p class="subtle" role="status" aria-live="polite">${e6SheetStatusText()}</p><div class="skills">${cells}</div>${errors.length?`<div class="error-review"><b>🔁 Ôn lại câu sai (${errors.length} gần nhất)</b><div>${errors.slice(-6).reverse().map(x=>`<div class="review-chip">Unit ${x.unit} • ${esc(x.module)}: ${esc(x.question).slice(0,70)}</div>`).join('')}</div><button class="btn light" onclick="v3OpenWrongReview()">📖 Xem & ôn câu sai</button></div>`:''}</section>`;
 }
 function v3OpenWrongReview(){const list=v3SafeGet(v3StoreKey('wrong'),[]);const target=document.getElementById('learningDashboard');if(!target)return;let html='<section class="learning-board"><h3>🔁 Ôn tập câu sai</h3><p>Đọc giải thích và tự làm lại câu hỏi trước khi xem đáp án.</p>';html+=list.slice(-25).reverse().map((x,i)=>`<details class="coach-box"><summary>Unit ${x.unit} • ${esc(x.module)} • ${esc(x.question)}</summary><p>Đáp án trước: ${esc(x.picked||'Chưa trả lời')}</p><p><b>Đáp án đúng:</b> ${esc(x.right)}</p><p>${esc(x.ex||'Hãy ôn lại nội dung bài học.')}</p></details>`).join('');target.innerHTML=html+'</section>';target.scrollIntoView({behavior:'smooth'})}
 const _v3RenderHome=renderHome;renderHome=function(){_v3RenderHome();const box=document.getElementById('learningDashboard');if(box)box.innerHTML=v3Dashboard()};
@@ -3006,5 +3032,46 @@ e6optLoadQuota=async function(){
 e6optLoadQuota=async function(){};
 e6optUpdateUsage=function(){};
 /* === End listening enhancement === */
+
+
+/* PROGRESS ONLY: refresh the on-screen progress from Google Sheet; no offline queue. */
+let e6SheetRemote={who:'',records:{}};
+let e6SheetStatus={who:'',ok:null,text:''};
+let e6ProgressLoadSeq=0;
+function e6SheetStatusText(){
+  const who=e6StudentHash();
+  if(!student().name||!student().className)return 'Nhập Họ tên và Lớp để xem tiến độ trên Google Sheet.';
+  if(e6SheetStatus.who!==who)return 'Tiến độ trên thiết bị đã sẵn sàng; đang kiểm tra Google Sheet...';
+  return esc(e6SheetStatus.text||'Tiến độ trên thiết bị đã sẵn sàng.');
+}
+async function e6RefreshProgress(){
+  const s=student(),who=e6StudentHash(),seq=++e6ProgressLoadSeq;
+  if(!s.name||!s.className){e6SheetRemote={who:'',records:{}};return}
+  e6SheetStatus={who,ok:null,text:'Đang cập nhật tiến độ đã lưu từ Google Sheet...'};
+  renderHome();
+  try{
+    const r=await jsonp('getProgress',{name:s.name,className:s.className,studentId:s.studentId||''},35000);
+    if(seq!==e6ProgressLoadSeq||who!==e6StudentHash())return;
+    if(!r||r.ok!==true)throw new Error(r?.message||'Không đọc được bảng TIEN_DO.');
+    const records=r.records&&typeof r.records==='object'&&!Array.isArray(r.records)?r.records:{};
+    e6SheetRemote={who,records};
+    e6SheetStatus={who,ok:true,text:'✓ Đã cập nhật tiến độ từ Google Sheet. Hoạt động luyện tập đã lưu: '+(Number(r.savedActivities)||0)+'.'};
+    renderHome();
+  }catch(e){
+    if(seq!==e6ProgressLoadSeq||who!==e6StudentHash())return;
+    e6SheetStatus={who,ok:false,text:'⚠️ Chưa đọc được tiến độ từ Google Sheet: '+(e.message||'Lỗi kết nối')+'. Chỉ hiển thị tiến độ trên thiết bị.'};
+    renderHome();
+  }
+}
+const _e6ProgressSaveStudent=saveStudent;
+saveStudent=function(){
+  const was=e6StudentHash(),res=_e6ProgressSaveStudent();
+  if(was!==e6StudentHash()){
+    e6SheetRemote={who:'',records:{}};
+    e6RefreshProgress();
+  }
+  return res;
+};
+window.addEventListener('load',()=>{if(student().name&&student().className)e6RefreshProgress()});
 
 </script></body></html>
