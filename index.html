@@ -756,7 +756,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 const asgFmt=s=>esc(s).replace(/\{u\}([\s\S]*?)\{\/u\}/gi,'<u>$1</u>').replace(/\{b\}([\s\S]*?)\{\/b\}/gi,'<b>$1</b>').replace(/\{i\}([\s\S]*?)\{\/i\}/gi,'<i>$1</i>').replace(/\n/g,'<br>');
 function norm(s){return String(s??'').trim().toLowerCase().replace(/[.,!?;:]+$/,'').replace(/\s+/g,' ')}
 function student(){return JSON.parse(localStorage.getItem('e6_student')||'{}')}
-const FIXED_API_URL='https://script.google.com/macros/s/AKfycbyI9CFD8Ta0Avl-u36iQGWD7JLOsqHPrLzPhcJV6RJDxO3_kEhs4CtXbjoXDWV-ZmW8/exec';
+const FIXED_API_URL='https://script.google.com/macros/s/AKfycbwOmsg2ewgEIuS7UQtKBHK-lSyCpl1_7HzjSeQqTVMiHgoP7lizDHI9EPGFO92kQquJ/exec';
 const EXPECTED_SHEET_ID='1Z2N8zU0L0Je-q4VSkpXPt_kj7OUvQU5CkWq8aZMwSRY';
 const EXPECTED_PROGRESS_VERSION='E6-TIENDO-20261018-V3';
 function apiUrl(){return FIXED_API_URL}
