@@ -1248,6 +1248,125 @@ body{background:linear-gradient(180deg,#8bdcff 0%,#c4f2ff 24%,#c4edab 56%,#8fce8
 #home .station .st-card button{background:var(--unit-color)!important;color:#fff!important}
 #home .station .st-card:hover{filter:saturate(1.13) brightness(1.02)}
 </style>
+
+<style id="e6-fixed-small-moving-train-20261019">
+/* Only train sizes/visibility are changed. Keep all original 12 station colors. */
+#home #stationMap .map-train.e6-train-mini{
+  display:block!important;position:absolute!important;
+  left:0!important;top:0!important;
+  width:clamp(114px,10.4vw,140px)!important;
+  height:auto!important;min-height:0!important;
+  z-index:10!important;opacity:1;
+  pointer-events:none!important;filter:drop-shadow(0 3px 2px #24546866)!important;
+  transform-origin:top left!important;will-change:transform,opacity;
+}
+#home #stationMap .map-train.e6-train-mini svg.e6-mini-title-svg{
+  display:block!important;width:100%!important;height:auto!important;
+  overflow:visible!important;aspect-ratio:580/125;
+  animation:e6bob .55s ease-in-out infinite alternate;
+}
+#home #stationMap .map-train.e6-train-mini .wheel{animation:e6spin .85s linear infinite}
+#home #stationMap .map-train.e6-train-mini .puff{animation:e6puff 1.9s ease-out infinite}
+@media(max-width:700px){#home #stationMap .map-train.e6-train-mini{width:94px!important}}
+@media(max-width:380px){#home #stationMap .map-train.e6-train-mini{width:78px!important}}
+@media(prefers-reduced-motion:reduce){
+  #home #stationMap .map-train.e6-train-mini svg.e6-mini-title-svg,
+  #home #stationMap .map-train.e6-train-mini .wheel,
+  #home #stationMap .map-train.e6-train-mini .puff{animation:none!important}
+}
+</style>
+
+<style id="e6-vivid-joyful-20261019">
+/* Vibrant scenic theme, keeping each station's exact original identity color.
+   Presentation only: no changes to the working miniature train or learning functions. */
+#home{
+  background:linear-gradient(180deg,
+    #27b8ff 0px, #66d7ff 160px, #aaefff 265px,
+    #d2f79f 370px, #80e46e 515px, #35c660 100%)!important;
+}
+#home::before{
+  background:
+    radial-gradient(ellipse 28% 100px at 17% 360px,#ffe6666e 0%,transparent 80%),
+    radial-gradient(ellipse 30% 140px at 85% 455px,#b9fb8080 0%,transparent 85%),
+    radial-gradient(ellipse 52% 150px at 24% 93%,#12b86c44 0%,transparent 85%),
+    radial-gradient(ellipse 40% 120px at 74% 87%,#fff09630 0%,transparent 85%)!important;
+  opacity:.70!important;
+}
+#home .hero-sky .rainbow{filter:saturate(1.8) contrast(1.14) drop-shadow(0 3px 3px #f9e18c70)!important}
+#home .hero-sky .sun{filter:saturate(1.55) brightness(1.1) drop-shadow(0 0 13px #fff07caa)!important}
+#home .hero-scene .scene-land{filter:saturate(1.48) contrast(1.08) brightness(1.04)!important}
+#home .hero-sky .cloud{filter:brightness(1.06) drop-shadow(0 2px 4px #ffffff66)!important}
+#home .hero.hero-train h1 span{color:#ff583a!important;text-shadow:0 2px 0 #fff9,0 3px 12px #ff8f6770!important}
+#home .section-heading h2{color:#10546e!important;text-shadow:0 1px 0 #ffffff80!important}
+#home .section-kicker{color:#e34413!important}
+
+/* Train-station carriages: more colorful bodies while keeping readable copy. */
+#home .station{filter:none!important}
+#home .station .st-card{
+  background:linear-gradient(154deg,
+    color-mix(in srgb,var(--unit-color) 53%,#ffffff) 0%,
+    color-mix(in srgb,var(--unit-color) 31%,#ffffff) 40%,
+    color-mix(in srgb,var(--unit-color) 10%,#fffdec) 100%)!important;
+  border:3px solid var(--unit-color)!important;
+  box-shadow:
+    inset 0 2px 0 #ffffffd9,
+    0 5px 0 color-mix(in srgb,var(--unit-color) 72%,#234a63),
+    0 11px 20px #234f4860!important;
+}
+#home .station .st-roof{
+  background:linear-gradient(160deg,
+    color-mix(in srgb,var(--unit-color) 48%,white) 0%,
+    var(--unit-color) 40%,
+    color-mix(in srgb,var(--unit-color) 83%,#1b2855) 100%)!important;
+  border:2px solid #ffffffc9!important;
+  box-shadow:inset 0 2px 0 #ffffffa8,0 4px 8px #25426255!important;
+}
+#home .station .st-sign{color:#fff!important;text-shadow:0 1px 3px #16314ab8!important}
+#home .station .st-flag{background:#ffffff42!important;border:1px solid #ffffff77!important}
+#home .station h3{color:#143b56!important;text-shadow:0 1px 0 #ffffff66!important}
+#home .station .unit-progress-head{color:#245268!important;font-weight:850!important}
+#home .station .progress{background:#ffffffc5!important;border:1px solid #fff!important;box-shadow:inset 0 2px 3px #26555b2b!important}
+#home .station .progress>i{background:linear-gradient(90deg,#31df92,#0bbd88)!important}
+#home .station .st-card button{
+  background:linear-gradient(125deg,color-mix(in srgb,var(--unit-color) 78%,white),var(--unit-color))!important;
+  color:#fff!important;
+  border:1px solid #ffffff92!important;
+  text-shadow:0 1px 2px #17394eae!important;
+  box-shadow:0 3px 0 color-mix(in srgb,var(--unit-color) 65%,#324861),inset 0 1px 0 #ffffff70!important;
+}
+#home .station .st-card button:hover{filter:brightness(1.09) saturate(1.2)!important}
+#home .station:hover .st-card{filter:saturate(1.14) brightness(1.04)!important}
+#home .station .st-card::before,#home .station .st-card::after{filter:saturate(1.35) brightness(1.05)}
+
+/* Brighter progress path, polished without obscuring the railway. */
+#home .e6-progress-rail{
+  background:linear-gradient(110deg,#fffbd9f5,#fff6bae8 52%,#f2ffcbf5)!important;
+  border:2px solid #fff8d8!important;
+  box-shadow:0 7px 17px #2874444a!important;
+}
+#home .e6-progress-title{color:#145868!important}
+#home .e6-progress-stop{
+  border:2px solid white!important;
+  box-shadow:inset 0 1px 0 #ffffff8a,0 3px 6px #285d5d7d!important;
+  filter:saturate(1.13) brightness(1.03)!important;
+}
+#home #learningDashboard .learning-board{
+  background:linear-gradient(110deg,#f7fff0b8,#e7ffeed9)!important;
+  border:1px solid #ffffffc9!important;
+}
+#home #learningDashboard .skill-stat{
+  background:linear-gradient(140deg,#fffefaeb,#e9fff5e8)!important;
+  border:1px solid #fffffff2!important;
+}
+#home .section-count{
+  background:linear-gradient(120deg,#fff6cf,#ffe9a7)!important;
+  border:2px solid white!important;color:#9d470a!important;
+}
+@media(max-width:640px){
+  #home{background:linear-gradient(180deg,#27b8ff 0px,#66d7ff 145px,#aaefff 255px,#d2f79f 355px,#80e46e 500px,#35c660 100%)!important}
+  #home .station .st-card{box-shadow:inset 0 2px 0 #ffffffd9,0 4px 0 color-mix(in srgb,var(--unit-color) 72%,#234a63),0 7px 14px #234f4860!important}
+}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="bg-life"><span class="balloon-wrap"><span class="balloon"><svg viewbox="0 0 60 92"><path d="M30 2C13 2 3 16 3 30c0 14 9 24 17 33h20c8-9 17-19 17-33C57 16 47 2 30 2z" fill="#ff7b7b"></path><path d="M30 2C21 8 17 18 17 30c0 14 5 24 9 33h8c4-9 9-19 9-33 0-12-4-22-13-28z" fill="#ffd166"></path><path d="M30 2c-5 8-6 18-6 28 0 14 2 24 3 33h6c1-9 3-19 3-33 0-10-1-20-6-28z" fill="#7bd3ea"></path><path d="M20 63l5 15M40 63l-5 15" stroke="#8a5a2b" stroke-width="1.6"></path><rect fill="#c58b4e" height="11" rx="2.5" width="16" x="22" y="77"></rect><circle cx="24" cy="26" fill="#fff" opacity=".7" r="2.2"></circle></svg></span></span><span class="fbird" style="top:14%;animation-delay:-4s;animation-duration:34s;width:34px"><svg class="bird" viewbox="0 0 30 14"><path d="M2 9 Q8 1 15 9 Q22 1 28 9" fill="none" stroke="#3d6b7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"></path></svg></span><span class="fbird" style="top:27%;animation-delay:-20s;animation-duration:46s;width:26px"><svg class="bird" viewbox="0 0 30 14"><path d="M2 9 Q8 1 15 9 Q22 1 28 9" fill="none" stroke="#3d6b7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"></path></svg></span><span class="fbird" style="top:9%;animation-delay:-30s;animation-duration:58s;width:22px"><svg class="bird" viewbox="0 0 30 14"><path d="M2 9 Q8 1 15 9 Q22 1 28 9" fill="none" stroke="#3d6b7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"></path></svg></span><span class="bfly b1"><svg viewbox="0 0 30 24"><g class="bwing"><ellipse cx="9" cy="8" fill="#ff9ecb" rx="8" ry="7"></ellipse><ellipse cx="21" cy="8" fill="#ff9ecb" rx="8" ry="7"></ellipse><ellipse cx="10" cy="17" fill="#ffd1e8" rx="5.5" ry="5"></ellipse><ellipse cx="20" cy="17" fill="#ffd1e8" rx="5.5" ry="5"></ellipse></g><rect fill="#5a4a6a" height="17" rx="1" width="2" x="14" y="4"></rect></svg></span><span class="bfly b2"><svg viewbox="0 0 30 24"><g class="bwing"><ellipse cx="9" cy="8" fill="#ffd166" rx="8" ry="7"></ellipse><ellipse cx="21" cy="8" fill="#ffd166" rx="8" ry="7"></ellipse><ellipse cx="10" cy="17" fill="#fff0b3" rx="5.5" ry="5"></ellipse><ellipse cx="20" cy="17" fill="#fff0b3" rx="5.5" ry="5"></ellipse></g><rect fill="#5a4a6a" height="17" rx="1" width="2" x="14" y="4"></rect></svg></span><span class="bfly b3"><svg viewbox="0 0 30 24"><g class="bwing"><ellipse cx="9" cy="8" fill="#b197fc" rx="8" ry="7"></ellipse><ellipse cx="21" cy="8" fill="#b197fc" rx="8" ry="7"></ellipse><ellipse cx="10" cy="17" fill="#e0d4ff" rx="5.5" ry="5"></ellipse><ellipse cx="20" cy="17" fill="#e0d4ff" rx="5.5" ry="5"></ellipse></g><rect fill="#5a4a6a" height="17" rx="1" width="2" x="14" y="4"></rect></svg></span><span class="windmill"><svg viewbox="0 0 80 112"><polygon fill="#fff4dc" points="28,108 52,108 46,40 34,40" stroke="#e6cfa3" stroke-width="2"></polygon><polygon fill="#e85d5d" points="30,40 50,40 40,22"></polygon><rect fill="#a47148" height="22" rx="3" width="8" x="36" y="86"></rect><g class="blades"><rect fill="#fff" height="40" rx="2" stroke="#cdd8df" stroke-width="1.2" transform="translate(0 6)" width="5" x="37.5" y="-6"></rect><rect fill="#fff" height="40" rx="2" stroke="#cdd8df" stroke-width="1.2" transform="translate(0 6) rotate(90 40 34)" width="5" x="37.5" y="-6"></rect><rect fill="#fff" height="40" rx="2" stroke="#cdd8df" stroke-width="1.2" transform="translate(0 6) rotate(180 40 34)" width="5" x="37.5" y="-6"></rect><rect fill="#fff" height="40" rx="2" stroke="#cdd8df" stroke-width="1.2" transform="translate(0 6) rotate(270 40 34)" width="5" x="37.5" y="-6"></rect></g><circle cx="40" cy="40" fill="#e85d5d" r="4.5"></circle></svg></span><svg class="tree sway t1" viewbox="0 0 60 70"><g transform="translate(30 34) scale(0.95)"><rect fill="#a47148" height="22" rx="2" width="6" x="-3" y="0"></rect><circle cx="0" cy="-6" fill="#4fb870" r="17"></circle><circle cx="-10" cy="3" fill="#5fcb7f" r="12"></circle><circle cx="11" cy="3" fill="#45a964" r="12"></circle><circle cx="-4" cy="-10" fill="#7fdc9a" opacity=".7" r="5"></circle></g></svg><svg class="tree sway t2" viewbox="0 0 60 70"><g transform="translate(30 36) scale(1.0)"><rect fill="#a47148" height="14" rx="2" width="6" x="-3" y="14"></rect><polygon fill="#3fa766" points="0,-30 -16,-4 16,-4"></polygon><polygon fill="#4cb774" points="0,-18 -20,10 20,10"></polygon><polygon fill="#58c481" points="0,-6 -23,20 23,20"></polygon></g></svg><svg class="tree sway t3" viewbox="0 0 60 70"><g transform="translate(30 34) scale(0.95)"><rect fill="#a47148" height="22" rx="2" width="6" x="-3" y="0"></rect><circle cx="0" cy="-6" fill="#4fb870" r="17"></circle><circle cx="-10" cy="3" fill="#5fcb7f" r="12"></circle><circle cx="11" cy="3" fill="#45a964" r="12"></circle><circle cx="-4" cy="-10" fill="#7fdc9a" opacity=".7" r="5"></circle></g></svg><svg class="tree sway t4" viewbox="0 0 60 70"><g transform="translate(30 36) scale(1.0)"><rect fill="#a47148" height="14" rx="2" width="6" x="-3" y="14"></rect><polygon fill="#3fa766" points="0,-30 -16,-4 16,-4"></polygon><polygon fill="#4cb774" points="0,-18 -20,10 20,10"></polygon><polygon fill="#58c481" points="0,-6 -23,20 23,20"></polygon></g></svg><svg class="tree sway t5" viewbox="0 0 60 70"><g transform="translate(30 34) scale(0.95)"><rect fill="#a47148" height="22" rx="2" width="6" x="-3" y="0"></rect><circle cx="0" cy="-6" fill="#4fb870" r="17"></circle><circle cx="-10" cy="3" fill="#5fcb7f" r="12"></circle><circle cx="11" cy="3" fill="#45a964" r="12"></circle><circle cx="-4" cy="-10" fill="#7fdc9a" opacity=".7" r="5"></circle></g></svg><svg class="tree sway t6" viewbox="0 0 60 70"><g transform="translate(30 36) scale(1.0)"><rect fill="#a47148" height="14" rx="2" width="6" x="-3" y="14"></rect><polygon fill="#3fa766" points="0,-30 -16,-4 16,-4"></polygon><polygon fill="#4cb774" points="0,-18 -20,10 20,10"></polygon><polygon fill="#58c481" points="0,-6 -23,20 23,20"></polygon></g></svg></div>
@@ -3628,48 +3747,114 @@ saveStudent=function(){
 window.addEventListener('load',()=>{if(student().name&&student().className)e6RefreshProgress()});
 
 
-/* Mini train that rides the station map and stops at every station */
+/* 2026-10-19: miniature title train travelling on VISIBLE station tracks.
+   Fix: old code read .st-dot positions, but those markers are display:none.
+   No changes to station colors, curriculum, student records or saving logic. */
 (function(){
-  var raf=0,MINI=`<svg viewBox="403 14 175 100" aria-hidden="true"><g><rect x="6" y="30" width="94" height="60" rx="12" fill="#ffd166"/><rect x="4" y="23" width="98" height="14" rx="7" fill="#f4b942"/><rect x="17" y="44" width="72" height="34" rx="11" fill="#fff" opacity=".96"/><text x="53" y="70" font-size="26" text-anchor="middle">🎧</text><rect x="100" y="80" width="12" height="5" fill="#4a4e69"/><g class="wheel"><circle cx="28" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="28" y1="100" x2="37.0" y2="100.0"/><line x1="28" y1="100" x2="32.5" y2="107.8"/><line x1="28" y1="100" x2="23.5" y2="107.8"/><line x1="28" y1="100" x2="19.0" y2="100.0"/><line x1="28" y1="100" x2="23.5" y2="92.2"/><line x1="28" y1="100" x2="32.5" y2="92.2"/></g><circle cx="28" cy="100" r="3.4" fill="#ffd166"/></g><g class="wheel"><circle cx="78" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="78" y1="100" x2="87.0" y2="100.0"/><line x1="78" y1="100" x2="82.5" y2="107.8"/><line x1="78" y1="100" x2="73.5" y2="107.8"/><line x1="78" y1="100" x2="69.0" y2="100.0"/><line x1="78" y1="100" x2="73.5" y2="92.2"/><line x1="78" y1="100" x2="82.5" y2="92.2"/></g><circle cx="78" cy="100" r="3.4" fill="#ffd166"/></g></g><g><rect x="106" y="30" width="94" height="60" rx="12" fill="#7bd3ea"/><rect x="104" y="23" width="98" height="14" rx="7" fill="#4fb6d2"/><rect x="117" y="44" width="72" height="34" rx="11" fill="#fff" opacity=".96"/><text x="153" y="70" font-size="26" text-anchor="middle">🗣️</text><rect x="200" y="80" width="12" height="5" fill="#4a4e69"/><g class="wheel"><circle cx="128" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="128" y1="100" x2="137.0" y2="100.0"/><line x1="128" y1="100" x2="132.5" y2="107.8"/><line x1="128" y1="100" x2="123.5" y2="107.8"/><line x1="128" y1="100" x2="119.0" y2="100.0"/><line x1="128" y1="100" x2="123.5" y2="92.2"/><line x1="128" y1="100" x2="132.5" y2="92.2"/></g><circle cx="128" cy="100" r="3.4" fill="#ffd166"/></g><g class="wheel"><circle cx="178" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="178" y1="100" x2="187.0" y2="100.0"/><line x1="178" y1="100" x2="182.5" y2="107.8"/><line x1="178" y1="100" x2="173.5" y2="107.8"/><line x1="178" y1="100" x2="169.0" y2="100.0"/><line x1="178" y1="100" x2="173.5" y2="92.2"/><line x1="178" y1="100" x2="182.5" y2="92.2"/></g><circle cx="178" cy="100" r="3.4" fill="#ffd166"/></g></g><g><rect x="206" y="30" width="94" height="60" rx="12" fill="#8ee3a0"/><rect x="204" y="23" width="98" height="14" rx="7" fill="#5cc77a"/><rect x="217" y="44" width="72" height="34" rx="11" fill="#fff" opacity=".96"/><text x="253" y="70" font-size="26" text-anchor="middle">📖</text><rect x="300" y="80" width="12" height="5" fill="#4a4e69"/><g class="wheel"><circle cx="228" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="228" y1="100" x2="237.0" y2="100.0"/><line x1="228" y1="100" x2="232.5" y2="107.8"/><line x1="228" y1="100" x2="223.5" y2="107.8"/><line x1="228" y1="100" x2="219.0" y2="100.0"/><line x1="228" y1="100" x2="223.5" y2="92.2"/><line x1="228" y1="100" x2="232.5" y2="92.2"/></g><circle cx="228" cy="100" r="3.4" fill="#ffd166"/></g><g class="wheel"><circle cx="278" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="278" y1="100" x2="287.0" y2="100.0"/><line x1="278" y1="100" x2="282.5" y2="107.8"/><line x1="278" y1="100" x2="273.5" y2="107.8"/><line x1="278" y1="100" x2="269.0" y2="100.0"/><line x1="278" y1="100" x2="273.5" y2="92.2"/><line x1="278" y1="100" x2="282.5" y2="92.2"/></g><circle cx="278" cy="100" r="3.4" fill="#ffd166"/></g></g><g><rect x="306" y="30" width="94" height="60" rx="12" fill="#ffa8c5"/><rect x="304" y="23" width="98" height="14" rx="7" fill="#f27ea6"/><rect x="317" y="44" width="72" height="34" rx="11" fill="#fff" opacity=".96"/><text x="353" y="70" font-size="26" text-anchor="middle">✍️</text><rect x="400" y="80" width="12" height="5" fill="#4a4e69"/><g class="wheel"><circle cx="328" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="328" y1="100" x2="337.0" y2="100.0"/><line x1="328" y1="100" x2="332.5" y2="107.8"/><line x1="328" y1="100" x2="323.5" y2="107.8"/><line x1="328" y1="100" x2="319.0" y2="100.0"/><line x1="328" y1="100" x2="323.5" y2="92.2"/><line x1="328" y1="100" x2="332.5" y2="92.2"/></g><circle cx="328" cy="100" r="3.4" fill="#ffd166"/></g><g class="wheel"><circle cx="378" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="378" y1="100" x2="387.0" y2="100.0"/><line x1="378" y1="100" x2="382.5" y2="107.8"/><line x1="378" y1="100" x2="373.5" y2="107.8"/><line x1="378" y1="100" x2="369.0" y2="100.0"/><line x1="378" y1="100" x2="373.5" y2="92.2"/><line x1="378" y1="100" x2="382.5" y2="92.2"/></g><circle cx="378" cy="100" r="3.4" fill="#ffd166"/></g></g><g><rect x="462" y="48" width="92" height="42" rx="18" fill="#ff6b6b"/><rect x="514" y="30" width="20" height="22" rx="3" fill="#4a4e69"/><rect x="509" y="24" width="30" height="9" rx="4.5" fill="#4a4e69"/><circle cx="490" cy="47" r="9" fill="#ffd166"/><rect x="408" y="30" width="64" height="60" rx="12" fill="#ff8e72"/><rect x="402" y="21" width="76" height="14" rx="7" fill="#ffd166"/><rect x="420" y="42" width="40" height="28" rx="9" fill="#e6f9ff"/><text x="440" y="65" font-size="22" text-anchor="middle">🧒</text><circle cx="518" cy="64" r="6" fill="#fff"/><circle cx="538" cy="64" r="6" fill="#fff"/><circle cx="519.5" cy="65" r="3" fill="#3b3b58"/><circle cx="539.5" cy="65" r="3" fill="#3b3b58"/><circle cx="508" cy="75" r="4" fill="#ff9aa2" opacity=".85"/><circle cx="548" cy="75" r="4" fill="#ff9aa2" opacity=".85"/><path d="M522 75 Q528 82 534 75" stroke="#3b3b58" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="555" cy="60" r="6" fill="#fff3a0" stroke="#ffd166" stroke-width="2"/><path d="M552 84 L572 101 L552 101Z" fill="#4a4e69"/><rect x="400" y="80" width="10" height="5" fill="#4a4e69"/><g class="wheel"><circle cx="432" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="432" y1="100" x2="441.0" y2="100.0"/><line x1="432" y1="100" x2="436.5" y2="107.8"/><line x1="432" y1="100" x2="427.5" y2="107.8"/><line x1="432" y1="100" x2="423.0" y2="100.0"/><line x1="432" y1="100" x2="427.5" y2="92.2"/><line x1="432" y1="100" x2="436.5" y2="92.2"/></g><circle cx="432" cy="100" r="3.4" fill="#ffd166"/></g><g class="wheel"><circle cx="480" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="480" y1="100" x2="489.0" y2="100.0"/><line x1="480" y1="100" x2="484.5" y2="107.8"/><line x1="480" y1="100" x2="475.5" y2="107.8"/><line x1="480" y1="100" x2="471.0" y2="100.0"/><line x1="480" y1="100" x2="475.5" y2="92.2"/><line x1="480" y1="100" x2="484.5" y2="92.2"/></g><circle cx="480" cy="100" r="3.4" fill="#ffd166"/></g><g class="wheel"><circle cx="528" cy="100" r="12" fill="#4a4e69"/><g stroke="#ffd166" stroke-width="2" stroke-linecap="round"><line x1="528" y1="100" x2="537.0" y2="100.0"/><line x1="528" y1="100" x2="532.5" y2="107.8"/><line x1="528" y1="100" x2="523.5" y2="107.8"/><line x1="528" y1="100" x2="519.0" y2="100.0"/><line x1="528" y1="100" x2="523.5" y2="92.2"/><line x1="528" y1="100" x2="532.5" y2="92.2"/></g><circle cx="528" cy="100" r="3.4" fill="#ffd166"/></g></g><g fill="#fff" stroke="#d9edf5" stroke-width="1.5"><circle class="puff" cx="524" cy="18" r="8" style="animation-delay:0s"/><circle class="puff" cx="524" cy="18" r="8" style="animation-delay:.75s"/><circle class="puff" cx="524" cy="18" r="8" style="animation-delay:1.5s"/></g></svg>`;
-  function ease(x){return x*x*(3-2*x)}
+  let animationId=0, activeMap=null, lastTime=0;
+  const HOLD_MS=390;
+  const SPEED_PX_MS=0.17;
+  const EXIT_MS=460;
+  const ENTRY_MS=520;
+  function smooth(t){return t*t*(3-2*t)}
+  function stopExisting(){if(animationId)cancelAnimationFrame(animationId);animationId=0;lastTime=0}
   window.startMapTrain=function(){
-    cancelAnimationFrame(raf);
-    var map=document.getElementById('stationMap'); if(!map) return;
-    var t=map.querySelector('.map-train');
-    if(!t){t=document.createElement('span');t.className='map-train';t.setAttribute('aria-hidden','true');t.innerHTML=MINI;map.appendChild(t)}
-    var i=0,seg=null,dir='right',lastStop=-1;
-    function pts(){var mr=map.getBoundingClientRect();return Array.prototype.map.call(map.querySelectorAll('.st-dot'),function(d){var r=d.getBoundingClientRect();return {x:r.left-mr.left+r.width/2,y:r.top-mr.top+r.height/2}})}
-    function place(p,d,o){t.style.opacity=o;t.style.transform='translate('+(p.x-38)+'px,'+(p.y-38)+'px)'+(d==='down'?' rotate(90deg)':'')}
-    function setStop(idx){var st=map.querySelectorAll('.station');if(lastStop>=0&&st[lastStop])st[lastStop].classList.remove('is-stop');lastStop=idx;if(idx>=0&&st[idx])st[idx].classList.add('is-stop')}
-    function frame(now){
-      raf=requestAnimationFrame(frame);
-      if(!map.isConnected){cancelAnimationFrame(raf);return}
-      if(map.offsetParent===null){seg=null;return}
-      var P=pts(); if(!P.length) return;
-      if(!seg){i=0;seg={type:'stop',start:now,dur:900};setStop(0)}
-      var a=P[i],n=P[(i+1)%P.length],k=Math.min(1,(now-seg.start)/seg.dur);
-      if(seg.type==='stop'){
-        place(a,dir,1);
-        if(k>=1){setStop(-1);
-          if(i===P.length-1)seg={type:'fadeout',start:now,dur:500,loop:true};
-          else if(n.y-a.y>40&&Math.abs(n.x-a.x)>20)seg={type:'fadeout',start:now,dur:350};
-          else seg={type:'move',start:now,dur:Math.max(800,Math.hypot(n.x-a.x,n.y-a.y)/0.26)};
+    stopExisting();
+    const map=document.getElementById('stationMap');
+    if(!map)return;
+    const stations=Array.from(map.querySelectorAll('.station'));
+    if(!stations.length)return;
+    // The original animated title SVG is the exact engine + four colorful carriages.
+    const titleTrain=document.querySelector('#home .hero-scene .scene-train svg');
+    if(!titleTrain)return;
+    map.querySelectorAll('.map-train').forEach(el=>el.remove());
+    const train=document.createElement('span');
+    train.className='map-train e6-train-mini';
+    train.setAttribute('aria-label','Đoàn tàu nhỏ đang di chuyển giữa 12 nhà ga');
+    train.setAttribute('role','img');
+    const svg=titleTrain.cloneNode(true);
+    svg.classList.add('e6-mini-title-svg');
+    svg.setAttribute('aria-hidden','true');
+    train.appendChild(svg);
+    map.appendChild(train);
+    activeMap=map;
+    let index=0, phase='enter', elapsed=0, highlighted=-1;
+    const home=document.getElementById('home');
+    function points(){
+      const mr=map.getBoundingClientRect();
+      return stations.map(st=>{
+        // Real, visible railway segments are used; hidden .st-dot markers return (0,0).
+        const rail=st.querySelector('.st-rail')||st;
+        const r=rail.getBoundingClientRect();
+        return {x:r.left-mr.left+r.width/2,y:r.top-mr.top+3};
+      });
+    }
+    function trainWidth(){return train.offsetWidth||116}
+    function place(point,alpha=1){
+      const w=trainWidth();
+      // The title SVG's visible wheels are at x=28..528, y~100 of 580x125.
+      // Center the whole train under its station; align the wheels with track top.
+      train.style.transform='translate3d('+(point.x-w*.5).toFixed(2)+'px,'+(point.y-w*100/580).toFixed(2)+'px,0)';
+      train.style.opacity=String(Math.min(1,Math.max(0,alpha)));
+    }
+    function highlight(next){
+      if(highlighted>=0&&stations[highlighted])stations[highlighted].classList.remove('is-stop');
+      highlighted=next;
+      if(next>=0&&stations[next])stations[next].classList.add('is-stop');
+    }
+    function changePhase(next){phase=next;elapsed=0}
+    function paintFrame(now){
+      if(!map.isConnected||map!==activeMap){stopExisting();return}
+      animationId=requestAnimationFrame(paintFrame);
+      if(!home||home.classList.contains('hidden')){lastTime=now;return}
+      const dt=lastTime?Math.min(60,Math.max(0,now-lastTime)):0;
+      lastTime=now;elapsed+=dt;
+      const P=points();
+      if(P.length!==stations.length||!P.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.y)))return;
+      const at=P[index], next=P[(index+1)%P.length];
+      const width=map.getBoundingClientRect().width;
+      const w=trainWidth();
+      if(phase==='enter'||phase==='row-enter'){
+        // Enter the next row in motion, without jumping into the middle of the scene.
+        const f=Math.min(1,elapsed/ENTRY_MS);
+        const startX=-w*.60;
+        place({x:startX+(at.x-startX)*smooth(f),y:at.y},Math.min(1,0.18+f*1.45));
+        if(f===1){highlight(index);changePhase('hold')}
+      } else if(phase==='hold'){
+        place(at,1);
+        if(elapsed>=HOLD_MS){
+          highlight(-1);
+          if(index===P.length-1||Math.abs(next.y-at.y)>35)changePhase('row-exit');
+          else changePhase('move');
         }
-      }else if(seg.type==='move'){
-        var e=ease(k);dir=Math.abs(n.y-a.y)>Math.abs(n.x-a.x)?'down':'right';
-        place({x:a.x+(n.x-a.x)*e,y:a.y+(n.y-a.y)*e},dir,1);
-        if(k>=1){i++;seg={type:'stop',start:now,dur:900};setStop(i)}
-      }else if(seg.type==='fadeout'){
-        place(a,dir,1-k);
-        if(k>=1){i=seg.loop?0:i+1;dir='right';seg={type:'fadein',start:now,dur:350}}
-      }else{
-        place(P[i],dir,k);
-        if(k>=1){seg={type:'stop',start:now,dur:900};setStop(i)}
+      } else if(phase==='move'){
+        const dist=Math.hypot(next.x-at.x,next.y-at.y);
+        const duration=Math.max(360,dist/SPEED_PX_MS);
+        const f=Math.min(1,elapsed/duration);
+        place({x:at.x+(next.x-at.x)*f,y:at.y+(next.y-at.y)*f},1);
+        if(f===1){index++;highlight(index);changePhase('hold')}
+      } else if(phase==='row-exit'){
+        // Pass the outer platform edge and disappear into the next row's entrance.
+        const f=Math.min(1,elapsed/EXIT_MS);
+        const endX=Math.max(at.x+w*.85,width+w*.55);
+        place({x:at.x+(endX-at.x)*f,y:at.y},Math.max(0,1-smooth(f)));
+        if(f===1){index=(index+1)%P.length;changePhase('row-enter')}
       }
     }
-    raf=requestAnimationFrame(frame);
+    // Begin travelling immediately rather than remaining stationary at station 1.
+    highlight(-1);
+    animationId=requestAnimationFrame(paintFrame);
   };
-  var _r=renderHome;renderHome=function(){_r.apply(this,arguments);window.startMapTrain()};
+  const previousRenderHome=renderHome;
+  renderHome=function(){
+    const result=previousRenderHome.apply(this,arguments);
+    window.startMapTrain();
+    return result;
+  };
+  window.addEventListener('resize',function(){
+    // Grid changes column count responsively: recalculate all railway stop positions.
+    if(document.getElementById('stationMap')===activeMap)window.startMapTrain();
+  },{passive:true});
   window.startMapTrain();
 })();
 
